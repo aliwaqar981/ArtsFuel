@@ -12,6 +12,7 @@ import Home from '../src/screens/appFlow/home'
 import MapSearch from '../src/screens/appFlow/map'
 import Favourite from '../src/screens/appFlow/favourites'
 import Messages from '../src/screens/appFlow/messages'
+import Profile from '../src/screens/appFlow/profile'
 
 
 
@@ -54,7 +55,7 @@ import Messages from '../src/screens/appFlow/messages'
     },
 
     MessagesTab: {
-        screen:Favourite,
+        screen:Messages,
         navigationOptions:{
             title:'Messages',
             tabBarOptions:{
@@ -66,7 +67,7 @@ import Messages from '../src/screens/appFlow/messages'
     },
 
     ProfileTab: {
-        screen:Favourite,
+        screen:Profile,
         navigationOptions:{
             title:'Profile',
             tabBarOptions:{

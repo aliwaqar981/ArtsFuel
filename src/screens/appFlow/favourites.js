@@ -1,7 +1,15 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Platform,FlatList} from 'react-native'
+import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, SafeAreaView,Platform,FlatList} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
 
+import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,TabBar } from 'react-native-scrollable-tab-view';
+
+
+const TabIcon=({selected, title})=>{
+    return(
+        <Text style={{color:selected?'red':'black'}}>{title}</Text>
+    );
+}
 
 const favList_Data = [
     {
@@ -52,22 +60,65 @@ else {
     Arr2.push(favList_Data[i]);
 }
 }
-  
+
+export const tab=()=>{
+    return(
+        <View style={{width :wp(10)}}>
+            <Text>Helo</Text>
+        </View>
+    )
+}
+
+// export const ScrollTab=()=>{
+//     return(
+        
+//     )
+// }
+
+
 
 
 class Favourite extends Component{
+    render(){
+        return(
+            <SafeAreaView style={{flex:1}}>
+                <ScrollableTabView
+                    style={{shadowColor: '#8f8f8f',justifyContent:'flex-start',tabStyle:{width:wp(15)},
+                    shadowOffset: { width:0, height:2},
+                    shadowOpacity: 0.5,
+                    elevation: 2,
+                    shadowRadius:2,}}
+                    //tabStyle={styles.tabStyles}
+                    tabBarActiveTextColor='#F51E5B'
+                    tabBarInactiveTextColor='#8F8F8F'
+                    tabStyle={{width:wp(15)}}
+                    // tabBarTextStyle={{width:wp(20)}}
+                    tabBarUnderlineStyle={{backgroundColor:'#F51E5B',width:wp(15),alignSelf:'flex-start'}}
+                    renderTabBar={() => <DefaultTabBar style={{width:wp(50),justifyContent:'flex-start'}} />}
+                >
+                    {/* <Text tabLabel='hi'>Hello world</Text> */}
+                    <Text tabLabel='Tab #1' >My</Text>
+                    <Saved tabLabel='Tab #2'>favorite</Saved>
+                    
+                </ScrollableTabView>
+            </SafeAreaView>
+        )
+    }
+}
+
+class Saved extends Component{
 
     //////////// short height list item //////////
     _listItemShort(item){
         return(
             <View style={styles.shortListContainer}>
                 <Image source={require('../../assets/guitar3.jpeg')} style={{width:wp(40),height:hp(30),margin:wp(1)}} resizeMode='cover'/>
-                <View style={{flexDirection:"row", alignItems:'center',justifyContent:'space-between',marginVertical:hp(2)}}>
+                <View style={{flexDirection:"row", alignItems:'center',marginVertical:hp(2)}}>
                     <View>
                         <Text style={styles.itemNameText}>Ancestor Guitar</Text>
                         <Text style={styles.priceText}>$1,200.00</Text>
                     </View>
-                    <TouchableOpacity style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2)}}></TouchableOpacity>
+                    <TouchableOpacity style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4}}></TouchableOpacity>
                 </View>
             </View>
         )
@@ -78,7 +129,7 @@ class Favourite extends Component{
         return(
             <View style={styles.longListContainer}>
                     <Image source={require('../../assets/guitar3.jpeg')} style={{width:wp(40),height:hp(34),margin:wp(1)}} resizeMode='cover'/>
-                    <View style={{flexDirection:"row", alignItems:'center',justifyContent:'space-between',marginVertical:hp(2)}}>
+                    <View style={{flexDirection:"row", alignItems:'center',marginVertical:hp(2)}}>
                         <View>
                             <Text style={styles.itemNameText}>Ancestor Guitar</Text>
                             <Text style={styles.priceText}>$1,200.00</Text>
@@ -91,16 +142,17 @@ class Favourite extends Component{
 
     render(){
         return(
-            <View style={{flex:1, padding:wp(5),backgroundColor:'red',flexDirection:'row'}}>
+            
+            <View style={{flex:1,flexDirection:'row'}}>
                 <FlatList
                 data={Arr2}
                 renderItem={(item)=>this._listItemShort(item)}
-                style={{
-                    marginBottom:hp(5),}}
+                style={{marginBottom:hp(5),}}
                 />
                 <FlatList
                 data={Arr3}
-                    //extraData={this.state}
+                style={{marginBottom:hp(5),}}                
+                //extraData={this.state}
                     //keyExtractor={this._keyExtractor}
                     //renderItem={this._renderItem}
                 //numColumns={2}
@@ -113,10 +165,15 @@ class Favourite extends Component{
 }
 
 const styles=StyleSheet.create({
+    tabStyles:{
+        width:wp(20),
+        backgroundColor:'blue'
+    },
     shortListContainer:{
         backgroundColor:'#ffffff',
+        width:wp(42),
         marginTop:hp(2),
-        marginRight:wp(5),
+        marginLeft:wp(5),
         shadowColor: '#8f8f8f',
         shadowOffset: { width:0, height:2},
         shadowOpacity: 0.5,
@@ -125,6 +182,7 @@ const styles=StyleSheet.create({
     },
     longListContainer:{
         backgroundColor:'#ffffff',
+        width:wp(42),
         marginTop:hp(2),
         shadowColor: '#8f8f8f',
         shadowOffset: { width:0, height:2},
