@@ -91,14 +91,14 @@ class Favourite extends Component{
                     //tabStyle={styles.tabStyles}
                     tabBarActiveTextColor='#F51E5B'
                     tabBarInactiveTextColor='#8F8F8F'
-                    tabStyle={{width:wp(15)}}
+                   // tabStyle={{width:wp(15)}}
                     // tabBarTextStyle={{width:wp(20)}}
-                    tabBarUnderlineStyle={{backgroundColor:'#F51E5B',width:wp(15),alignSelf:'flex-start'}}
-                    renderTabBar={() => <DefaultTabBar style={{width:wp(50),justifyContent:'flex-start'}} />}
+                    tabBarUnderlineStyle={{backgroundColor:'#F51E5B',}}
+                    renderTabBar={() => <DefaultTabBar />}
                 >
                     {/* <Text tabLabel='hi'>Hello world</Text> */}
-                    <Text tabLabel='Tab #1' >My</Text>
-                    <Saved tabLabel='Tab #2'>favorite</Saved>
+                    <Text tabLabel='Tab #1' nav={this.props.navigation}>My</Text>
+                    <Saved tabLabel='Tab #2' nav={this.props.navigation}>favorite</Saved>
                     
                 </ScrollableTabView>
             </SafeAreaView>
@@ -134,7 +134,7 @@ class Saved extends Component{
                             <Text style={styles.itemNameText}>Ancestor Guitar</Text>
                             <Text style={styles.priceText}>$1,200.00</Text>
                         </View>
-                        <TouchableOpacity style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2)}}></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.props.nav.navigate('CartScreen')} style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2)}}></TouchableOpacity>
                     </View>
             </View>
         )

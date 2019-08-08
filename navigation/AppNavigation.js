@@ -15,6 +15,8 @@ import Signup from '../src/screens/auth/signup'
 import Signin from '../src/screens/auth/sigin'
 import Home from '../src/screens/appFlow/home'
 import Tabs from './BottomTab'
+import Cart from '../src/screens/appFlow/cart'
+import Favourites from '../src/screens/appFlow/favourites'
 
 const AuthStack = createSwitchNavigator({
     SignupScreen: Signup ,
@@ -30,6 +32,15 @@ const AuthStack = createSwitchNavigator({
         navigationOptions:{
             header:null
         }
+    },
+    Favourite:{
+      screen:Favourites,
+      navigationOptions:{
+          header:null
+      }
+  },
+    CartScreen:{
+      screen:Cart
     },
     
     // DashboardScreen: {

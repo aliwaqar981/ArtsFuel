@@ -109,11 +109,11 @@ class MapSearch extends Component{
      </MapView>
 
                 <View style={styles.mapCard}>
-                  <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(30),height:wp(32),borderRadius:6}} resizeMode='cover'/>
+                  <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(30),height:wp(34),borderRadius:6}} resizeMode='cover'/>
                   
                   <View style={{marginLeft:wp(6) }}>
                     <Text style={styles.profilName}>CONTAMPORARY ART EXIBIT 2019</Text>
-                    <Text style={[styles.profileDes,{color:'black', fontWeight:'400', marginTop:wp(2)}]}>South Blakemouth, NYC</Text>
+                    <Text style={{color:'#000000', fontWeight:'400', marginTop:wp(1), width:wp(40), fontFamily:'Roboto-Regular',fontSize:12}}>South Blakemouth, NYC</Text>
                     <Text style={styles.profileDes}>june 26-29, 2019</Text>
 
                     <TouchableOpacity style={styles.buyButton}>
@@ -163,7 +163,7 @@ const styles=StyleSheet.create({
     },
     buyButton:{
         borderRadius:4,
-        marginTop:hp(3),
+        marginTop:hp(2),
         justifyContent:'center',
         alignItems:'center',
         backgroundColor:'#c4232c',
