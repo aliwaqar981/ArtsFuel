@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, SafeAreaView,Platform,FlatList} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
 
-import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,TabBar } from 'react-native-scrollable-tab-view';
+// import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,TabBar } from 'react-native-scrollable-tab-view';
+import ScrollableTabView, { DefaultTabBar, ScrollableTabBar } from 'react-native-scrollable-tab-view-forked'
+
 
 
 const TabIcon=({selected, title})=>{
@@ -82,25 +84,53 @@ class Favourite extends Component{
     render(){
         return(
             <SafeAreaView style={{flex:1}}>
-                <ScrollableTabView
+
+                {/* <ScrollableTabView
                     style={{shadowColor: '#8f8f8f',justifyContent:'flex-start',tabStyle:{width:wp(15)},
                     shadowOffset: { width:0, height:2},
                     shadowOpacity: 0.5,
                     elevation: 2,
-                    shadowRadius:2,}}
-                    //tabStyle={styles.tabStyles}
-                    tabBarActiveTextColor='#F51E5B'
-                    tabBarInactiveTextColor='#8F8F8F'
-                   // tabStyle={{width:wp(15)}}
-                    // tabBarTextStyle={{width:wp(20)}}
-                    tabBarUnderlineStyle={{backgroundColor:'#F51E5B',}}
+                    shadowRadius:2,}} */}
+                    {/* //tabStyle={styles.tabStyles} */}
+                    {/* tabBarActiveTextColor='#F51E5B'
+                    tabBarInactiveTextColor='#8F8F8F' */}
+                   {/* // tabStyle={{width:wp(15)}}
+                    // tabBarTextStyle={{width:wp(20)}} */}
+                    {/* tabBarUnderlineStyle={{backgroundColor:'#F51E5B',}}
                     renderTabBar={() => <DefaultTabBar />}
-                >
+                > */}
                     {/* <Text tabLabel='hi'>Hello world</Text> */}
-                    <Text tabLabel='Tab #1' nav={this.props.navigation}>My</Text>
+                    {/* <Text tabLabel='Tab #1' nav={this.props.navigation}>My</Text>
                     <Saved tabLabel='Tab #2' nav={this.props.navigation}>favorite</Saved>
                     
-                </ScrollableTabView>
+                </ScrollableTabView> */}
+
+
+                    <ScrollableTabView
+
+                        renderTabBar={() => (
+                        <ScrollableTabBar
+                            style={styles.scrollStyle}
+                            tabStyle={styles.tabStyle}
+                            
+                        >
+                            <Text style={{width:200, backgroundColor:'red'}}>Helo world</Text>
+                        </ScrollableTabBar>
+                        
+                        )}
+                        
+                        tabBarTextStyle={styles.tabBarTextStyle}
+                        tabBarInactiveTextColor={'black'}
+                        tabBarActiveTextColor={'red'}
+                        tabBarUnderlineStyle={styles.underlineStyle}
+                        initialPage={1}
+                    >
+
+                        <View key={'1'} tabLabel={'firt tab '} style={{flex:1}}/>
+                        <View key={'2'} tabLabel={'second tab'} style={{flex:1}}/>
+                    </ScrollableTabView>
+
+
             </SafeAreaView>
         )
     }
@@ -165,10 +195,29 @@ class Saved extends Component{
 }
 
 const styles=StyleSheet.create({
-    tabStyles:{
-        width:wp(20),
-        backgroundColor:'blue'
-    },
+    // tabStyles:{
+    //     width:wp(20),
+    //     backgroundColor:'blue'
+    // },
+    tabStyle: {
+        width:150
+      },
+     scrollStyle: {
+       backgroundColor: 'white',
+       //paddingLeft: 10,
+       //paddingRight: 10,
+       // justifyContent: 'center',
+     },
+     tabBarTextStyle: {
+       fontSize: 14,
+       fontWeight: 'normal',
+     },
+     underlineStyle: {
+       height: 3,
+       backgroundColor: 'red',
+       borderRadius: 3,
+       width: 80,
+     },
     shortListContainer:{
         backgroundColor:'#ffffff',
         width:wp(42),
