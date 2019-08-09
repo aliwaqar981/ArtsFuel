@@ -4,6 +4,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
 
 // import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,TabBar } from 'react-native-scrollable-tab-view';
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar } from 'react-native-scrollable-tab-view-forked'
+import MasonryList from "react-native-masonry-list"
+
 
 
 
@@ -120,14 +122,14 @@ class Favourite extends Component{
                         )}
                         
                         tabBarTextStyle={styles.tabBarTextStyle}
-                        tabBarInactiveTextColor={'black'}
-                        tabBarActiveTextColor={'red'}
+                        tabBarInactiveTextColor={'#969696'}
+                        tabBarActiveTextColor={'black'}
                         tabBarUnderlineStyle={styles.underlineStyle}
                         initialPage={1}
                     >
 
-                        <View key={'1'} tabLabel={'firt tab '} style={{flex:1}}/>
-                        <View key={'2'} tabLabel={'second tab'} style={{flex:1}}/>
+                        <Saved key={'1'} tabLabel={'Saved(22)'} style={{flex:1}} nav={this.props.navigation}/>
+                        <View key={'2'} tabLabel={'Purchased(4)'} style={{flex:1}}/>
                     </ScrollableTabView>
 
 
@@ -173,23 +175,66 @@ class Saved extends Component{
     render(){
         return(
             
-            <View style={{flex:1,flexDirection:'row'}}>
-                <FlatList
-                data={Arr2}
-                renderItem={(item)=>this._listItemShort(item)}
-                style={{marginBottom:hp(5),}}
-                />
-                <FlatList
-                data={Arr3}
-                style={{marginBottom:hp(5),}}                
-                //extraData={this.state}
-                    //keyExtractor={this._keyExtractor}
-                    //renderItem={this._renderItem}
-                //numColumns={2}
-                renderItem={(item)=>this._listItemLong(item)}
-                //renderItem={({ item ,index}) => index%2==0?this._listItemShort(item):this._listItemLong(item)}
-                />
+            <MasonryList
+      // renderItem={(item)=><myComp/>}
+      renderIndividualFooter={()=>
+            <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:hp(1)}}>
+                <View>
+                    <Text style={styles.itemNameText}>Ancestor Guitar</Text>
+                    <Text style={styles.priceText}>$1,200.00</Text>
+                </View>
+                <TouchableOpacity onPress={()=>this.props.nav.navigate('CartScreen')} style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2)}}></TouchableOpacity>
             </View>
+      }
+    //images={[]}
+    images={[
+        // Can be used with different image object fieldnames.
+        // Ex. source, source.uri, uri, URI, url, URL
+        
+        { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" ,
+        dimensions: { width: 1080, height: 1420 },
+
+      },
+      
+        // { source: require("yourApp/image.png"), 
+        //     // IMPORTANT: It is REQUIRED for LOCAL IMAGES
+        //     // to include a dimensions field with the
+        //     // actual width and height of the image or
+        //     // it will throw an error.
+         
+        // },
+        
+        { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
+            // Optional: Adding a dimensions field with
+            // the actual width and height for REMOTE IMAGES
+            // will help improve performance.
+            dimensions: { width: 1080, height: 1820 },
+            containerWidth:wp(35)
+           },
+        { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg",
+            // Optional: Does not require an id for each
+            // image object, but is for best practices.
+            id: "blpccx4cn" ,
+            dimensions: { width: 1080, height: 1420 },
+
+        },
+        { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg",
+            // Optional: Adding a dimensions field with
+            // the actual width and height for REMOTE IMAGES
+            // will help improve performance.
+            dimensions: { width: 1080, height: 1820 },
+            containerWidth:wp(35)
+           },
+           { URI: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg",
+            // Optional: Does not require an id for each
+            // image object, but is for best practices.
+            id: "blpccx4cn" ,
+            dimensions: { width: 1080, height: 1420 },
+
+        },
+    ]}
+>
+</MasonryList>
         )
     }
 }
@@ -210,11 +255,11 @@ const styles=StyleSheet.create({
      },
      tabBarTextStyle: {
        fontSize: 14,
-       fontWeight: 'normal',
+       fontWeight: 'bold',
      },
      underlineStyle: {
        height: 3,
-       backgroundColor: 'red',
+       backgroundColor: '#c4232c',
        borderRadius: 3,
        width: 80,
      },
