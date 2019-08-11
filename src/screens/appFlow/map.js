@@ -26,52 +26,7 @@ class MapSearch extends Component{
          {/* Search Bar */}
 
           {/* <Text>{this.props.getphotographer.getphotographer.users[0].full_name}</Text> */}
-          <View
-            style={{
-              height: wp("12"),
-              width: wp("92"),
-              backgroundColor: "#fff",
-              alignSelf: "center",
-              marginTop: wp("8"),
-              justifyContent: "space-between",
-              alignItems: "center",
-              borderBottomLeftRadius: 8,
-              borderBottomRightRadius: 8,
-              borderTopLeftRadius: 8,
-              borderTopRightRadius: 8,
-              flexDirection: "row",
-              position: "absolute",
-              top: wp("10"),
-              zIndex: 10,
-              shadowColor: '#8f8f8f',
-              shadowOffset: { width:0, height:2},
-              shadowOpacity: 0.5,
-              elevation: 2,
-              shadowRadius:2
-            }}
-          >
-            <TextInput>
-              <TouchableOpacity
-                onPress={this.drawer1}
-                style={{ marginLeft: wp("3") }}
-              >
-                <Image
-                  source={require("../../assets/SearchIcon.png")}
-                  resizeMode="contain"
-                  style={{
-                    height: wp("5"),
-                    width: wp("5"),
-                    borderRightWidth: 3,
-                    borderColor: "#D5D5E0"
-                  }}
-                />
-              </TouchableOpacity>
-            </TextInput>
-
-              
-              
-
-          </View>
+          
 
          {/* Search Bar */}
 
@@ -108,6 +63,25 @@ class MapSearch extends Component{
 
      </MapView>
 
+     {/* Search Bar */}
+     <View style={styles.searchCard}>
+            <Image
+              source={require("../../assets/SearchIcon.png")}
+              resizeMode="contain"
+              style={{
+                height: wp("5"),
+                width: wp("5"),
+                borderRightWidth: 3,
+                borderColor: "#D5D5E0",
+                marginLeft:wp(4)
+              }}
+            />
+
+
+      </View>
+
+
+      {/* Event Card View */}
                 <View style={styles.mapCard}>
                   <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(30),height:wp(34),borderRadius:6}} resizeMode='cover'/>
                   
@@ -144,6 +118,24 @@ const styles=StyleSheet.create({
         elevation: 2,
         shadowRadius:2,
         marginLeft:wp(5)
+    },
+    searchCard:{
+        height: wp("12"),
+        width: wp("88"),
+        backgroundColor: "#fff",
+        alignSelf: "center",
+        marginTop: wp("8"),
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderRadius:25,
+        flexDirection: "row",
+        position: "absolute",
+        top: wp("10"),
+        shadowColor: '#8f8f8f',
+        shadowOffset: { width:0, height:2},
+        shadowOpacity: 0.5,
+        elevation: 2,
+        shadowRadius:2
     },
     profilName:{
         width:wp(35),

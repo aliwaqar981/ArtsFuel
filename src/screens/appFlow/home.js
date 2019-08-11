@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, TextInput,FlatList, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
+import {View, Text, TouchableOpacity, ScrollView,TextInput,FlatList, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
+import MasonryList from "react-native-masonry-list"
+
+
 
 var flatListData=[
     {
@@ -25,45 +28,246 @@ var flatListData=[
     }
 ]
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//****************************** List Header Text Container *********************************//
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+const ListHeader=(props)=>{
+    return(
+        <View style={{flexDirection:'row',width:wp(92),alignSelf:'center',justifyContent:'space-between',marginTop:hp(4)}}>
+            <Text style={styles.headingText}>{props.headerName}</Text>
+            <TouchableOpacity>
+                <Text style={styles.profileNameText}>{props.viewText}</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//******************************** Artists To Follow List ***********************************//
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+const ToFollowList=()=>{
+    return(
+        <View style={styles.cardContainer1}>
+            <Image source={require('../../assets/images/image8.jpg')} style={{width:wp(66),height:wp(60),marginLeft:wp(2),marginTop:wp(2)}} resizeMode={'cover'}/>
+            <View style={styles.CardRowContent}>
+                <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(10),height:wp(10),borderRadius:wp(5)}} resizeMode='cover'/>
+
+                <View style={{marginLeft:wp(2)}}>
+                    <Text style={styles.itemNameText}>One Sunny Afternoon</Text>
+                    <Text style={styles.profileNameText}>Jon Garza</Text>                        
+                </View>
+            </View>
+
+            <TouchableOpacity style={styles.followButton}>
+                <Text style={styles.buttonText}>Follow</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//******************************** Followed Artist's List ***********************************//
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+const FollowedList=()=>{
+    return(
+        <View style={styles.cardContainer2}>
+            <Image source={require('../../assets/images/image7.jpeg')} style={{width:wp(66),height:wp(44),marginLeft:wp(2),marginTop:wp(2)}} resizeMode={'cover'}/>
+            
+            <View style={styles.CardRowContent}>
+                <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(10),height:wp(10),borderRadius:wp(5)}} resizeMode='cover'/>
+
+                <View style={{marginLeft:wp(2)}}>
+                    <Text style={styles.itemNameText}>One Sunny Afternoon</Text>
+                    <Text style={styles.profileNameText}>Jon Garza</Text>                        
+                </View>
+            </View>
+        </View>
+    )
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//********************************* Upcoming Events Part ************************************//
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+const UpcomingList=()=>{
+    return(
+        <View style={styles.cardContainer3}>
+            <Image source={require('../../assets/images/image8.jpg')} style={{width:wp(70),height:wp(44)}} resizeMode={'cover'}/>
+
+            <View style={{marginTop:hp(1),overflow:'hidden'}}>
+                <Text style={styles.descriptionText}>Contemporary Art Exibit 2019</Text>
+                <Text style={styles.itemNameText}>One Sunny Afternoon</Text>
+                <Text style={styles.profileNameText}>Jon Garza</Text>                        
+            </View>
+
+            <TouchableOpacity style={styles.ticketsButton}>
+                <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+
+//********************************************************************************************//
+//********************************************************************************************//
+//----------------------------- Main Home Screen Component -----------------------------------//
+//********************************************************************************************//
+//********************************************************************************************//
 class Home extends Component{
     render(){
         return(
-            <View style={{marginTop:hp(5)}}>
+        <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
+            <ScrollView style={{paddingBottom:hp(5)}}>
+                
+                {/* Artists to Follow Part */}
+                <ListHeader headerName={'Artists to follow'} viewText={'View more'}/>
                 <FlatList
+                style={{marginLeft:wp(2),marginRight:wp(2)}}
                 horizontal
                 data={flatListData}
                 renderItem={(item,index)=>
-                    <View style={styles.cardContainer}>
-                        <Image source={require('../../assets/images/image6.jpeg')} style={{width:wp(66),height:wp(40),alignSelf:'center'}} resizeMode={'cover'}/>
-                        <TouchableOpacity style={styles.CardRowContent} onPress={()=>this.props.nav.navigate('ChatScreen')}>
-                            <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(10),height:wp(10),borderRadius:wp(5)}} resizeMode='cover'/>
+                    <ToFollowList/>
+                }>
+                </FlatList>
 
+
+                {/* Followed Artists Part */}
+                <ListHeader headerName={'From people you follow'} viewText={'View more'}/>
+                <FlatList
+                style={{marginLeft:wp(2),marginRight:wp(2)}}
+                horizontal
+                data={flatListData}
+                renderItem={(item,index)=>
+                    <FollowedList/>
+                }>
+                </FlatList>
+
+                {/* Explore Atr Works Part */}
+                <ListHeader headerName={'Explore artworks'} viewText={'View all'}/>
+                <MasonryList
+                    backgroundColor={'#F6F6F6'}
+                    spacing={4}
+                    renderIndividualFooter={()=>
+                        <View style={{flexDirection:'row',marginLeft:wp(2)}}>
+                            <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(10),height:wp(10),borderRadius:wp(5)}} resizeMode='cover'/>
                             <View style={{marginLeft:wp(2)}}>
                                 <Text style={styles.itemNameText}>Ancestor Guitar</Text>
-                                <Text style={styles.priceText}>$1,200.00</Text>                        
+                                <Text style={styles.priceText}>$1,200.00</Text>
                             </View>
-                        </TouchableOpacity>
-                    </View>
-                }>
+                        </View>
+                    }
+                    images={[
+                        // Can be used with different image object fieldnames.
+                        // Ex. source, source.uri, uri, URI, url, URL
+                        
+                        { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" ,
+                        dimensions: { width: 1080, height: 1420 },
+                        },
+                        
+                        { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
+                            // Optional: Adding a dimensions field with
+                            // the actual width and height for REMOTE IMAGES
+                            // will help improve performance.
+                            dimensions: { width: 1080, height: 1820 },
+                            containerWidth:wp(35)
+                        },
 
-                </FlatList>
-            </View>
+                        { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg",
+                            // Optional: Does not require an id for each
+                            // image object, but is for best practices.
+                            id: "blpccx4cn" ,
+                            dimensions: { width: 1080, height: 1420 },
+
+                        },
+
+                        { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg",
+                            dimensions: { width: 1080, height: 1820 },
+                            containerWidth:wp(35)
+                        },
+
+                        { URI: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg",
+                            id: "blpccx4cn" ,
+                            dimensions: { width: 1080, height: 1420 },
+                        },
+                    ]}
+                >
+            </MasonryList>
+            <TouchableOpacity style={{width:wp(88),height:wp(10),borderWidth:0.5,marginBottom:hp(2),borderColor:'#969696', marginTop:hp(1),alignSelf:'center',justifyContent:'center',alignItems:'center'}}>
+                <Text style={[styles.priceText,{fontWeight:'bold'}]}>Load more</Text>
+            </TouchableOpacity>
+
+                    {/* Upcoming List Part */}
+                    <ListHeader headerName={'Upcoming events'} viewText={'View more'}/>
+                    <FlatList
+                        style={{marginLeft:wp(2),marginRight:wp(2)}}
+                        horizontal
+                        data={flatListData}
+                        renderItem={(item,index)=>
+                        <UpcomingList/>
+                    }>
+                    </FlatList>
+
+            </ScrollView> 
+        </View>
         )
     }
 }
 
 const styles=StyleSheet.create({
-    cardContainer:{
-        width:wp(70),
-        padding:wp(2),
+    shadowContainer:{
         shadowColor: '#c5c4c4',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 3,
-        elevation: 1,
+        elevation: 2,
         marginLeft:wp(2),
         backgroundColor:'#ffffff',
-        
+    },
+    cardContainer1:{
+        marginTop:hp(2),
+        width:wp(70),
+        shadowColor: '#c5c4c4',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 3,
+        elevation:2,
+        marginLeft:wp(2),
+        backgroundColor:'#ffffff',
+        //height:wp(80),
+        marginBottom:hp(2),
+        paddingBottom:wp(2)
+
+    },
+    cardContainer2:{
+        marginTop:hp(2),
+        width:wp(70),
+        shadowColor: '#c5c4c4',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 3,
+        elevation:2,
+        marginLeft:wp(2),
+        backgroundColor:'#ffffff',
+        //height:wp(60),
+        marginBottom:hp(2),
+        paddingBottom:wp(2)
+    },
+    cardContainer3:{
+        marginTop:hp(2),
+        width:wp(70),
+        marginLeft:wp(2),
+        marginRight:wp(4),
+        //height:wp(60),
+        marginBottom:hp(2),
+        paddingBottom:wp(2)
     },
     CardRowContent:{
         width:wp(66),
@@ -71,27 +275,64 @@ const styles=StyleSheet.create({
         marginTop:hp(1),
         flexDirection:'row',
         alignItems:'center',
-        backgroundColor:'#ffffff'
+        backgroundColor:'#ffffff',
+        marginLeft:wp(2)
     },
-    smallGreyText:{
+    headingText:{
+        color:'black',
+        fontFamily:'Roboto-Regular',
+        fontSize:14,
+        fontWeight:'bold'
+    },
+    profileNameText:{
         color:'#969696',
         fontFamily:'Roboto-Regular',
         fontSize:13
     },
-    smallBlackText:{
+    itemNameText:{
         color:'black',
         fontFamily:'Roboto-Regular',
         fontSize:13,
-        fontWeight:'300'
+        fontWeight:'bold'
     },
-    buyButton:{
-        width:wp(100),
-        height:wp(14),
-        position:"absolute",
-        bottom:0,
-        backgroundColor:'#EED9B4',
-        justifyContent:'center',
-        alignItems:'center'
+    priceText:{
+        color:'#969696',
+        fontFamily:'Roboto-Regular',
+        fontSize:13,
+        marginLeft:wp(3),
+    },
+    descriptionText:{
+        width:wp(70),
+        color:'black',
+        fontFamily:'Roboto-Regular',
+        fontSize:14,
+        fontWeight:'bold'
+    },
+    followButton:{
+        width:wp(66),
+        backgroundColor : 'rgb(196,35,44)',
+        borderRadius : 25,
+        paddingVertical : 8,
+        //marginVertical : 16,
+        alignItems:"center",
+        alignSelf:'center',
+        marginTop:hp(1.5)
+    },
+    buttonText : {
+        fontSize:14,
+        fontWeight:'bold',
+        color:'#fff',
+        fontFamily:'Roboto-Regular'
+    },
+    ticketsButton : {
+        width:wp(70),
+        backgroundColor : 'rgb(196,35,44)',
+        borderRadius : 4,
+        paddingVertical : 8,
+        //marginVertical : 16,
+        alignItems:"center",
+        alignSelf:'center',
+        marginTop:hp(1.5)
     }
 })
 
