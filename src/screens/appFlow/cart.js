@@ -25,8 +25,8 @@ class Cart extends Component{
                     <Image style={{width:wp(16),height:wp(16), borderRadius:wp(8),}} source={require('../../assets/person.png')} resizeMode='cover'/>
                     
                     <View style={{marginLeft:wp(5),marginTop:hp(1)}}>
-                        <Text style={{color:'black',fontWeight:'bold',fontFamily:'Roboto-Regular',fontSize:13}}>Edit Profile</Text>
-                        <Text style={styles.smallGreyText}>Upload Work</Text>
+                        <Text style={{color:'black',fontWeight:'bold',fontFamily:'Roboto-Regular',fontSize:13}}>Stella Curtis</Text>
+                        <Text style={styles.smallGreyText}>New York</Text>
                     </View>
                 </View>
 
@@ -74,7 +74,7 @@ const styles=StyleSheet.create({
         height:wp(14),
         position:"absolute",
         bottom:0,
-        backgroundColor:'brown',
+        backgroundColor:'#EED9B4',
         justifyContent:'center',
         alignItems:'center'
     }

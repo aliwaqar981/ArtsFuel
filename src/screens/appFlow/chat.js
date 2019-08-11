@@ -57,11 +57,11 @@ state = {
                     borderBottomLeftRadius:6,
                     borderBottomRightRadius:6,
                     borderTopRightRadius:6,
-                    borderWidth:0.5,
-                    borderColor:'#969696'
+                    borderWidth:1,
+                    borderColor:'#F6F6F6'
                   },
                   right:{
-                    backgroundColor: '#969696',
+                    backgroundColor: '#F6F6F6',
                     borderBottomRightRadius:0,
                     borderBottomLeftRadius:6,
                     borderTopLeftRadius:6,

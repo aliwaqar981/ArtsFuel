@@ -79,7 +79,7 @@ class Profile extends Component{
                     <Text style={styles.profileDes}>Painting, Abstract, Modern Art, Contemporary Art</Text>
                 </View>
 
-                <TouchableOpacity style={styles.hireButton}>
+                <TouchableOpacity style={styles.hireButton} onPress={()=>this.props.navigation.navigate('ExploreScreen')}>
                     <Text style={{color:'black',fontFamily:'Roboto-Regular',fontSize:10, fontWeight:'bold'}}>For Hire: $099/project</Text>
                 </TouchableOpacity>
 

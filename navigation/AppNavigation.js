@@ -18,6 +18,7 @@ import Tabs from './BottomTab'
 import Cart from '../src/screens/appFlow/cart'
 import Favourites from '../src/screens/appFlow/favourites'
 import Chat from '../src/screens/appFlow/chat'
+import Explore from '../src/screens/appFlow/exploreArt'
 
 const AuthStack = createSwitchNavigator({
     SignupScreen: Signup ,
@@ -45,6 +46,12 @@ const AuthStack = createSwitchNavigator({
     },
     ChatScreen:{
       screen:Chat
+    },
+    ExploreScreen:{
+      screen:Explore,
+      navigationOptions:{
+        title:'Explore artswork',
+      },
     },
     
     // DashboardScreen: {
