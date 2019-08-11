@@ -86,7 +86,6 @@ class Favourite extends Component{
     render(){
         return(
             <SafeAreaView style={{flex:1}}>
-
                 {/* <ScrollableTabView
                     style={{shadowColor: '#8f8f8f',justifyContent:'flex-start',tabStyle:{width:wp(15)},
                     shadowOffset: { width:0, height:2},
@@ -111,11 +110,14 @@ class Favourite extends Component{
                     <ScrollableTabView
 
                         renderTabBar={() => (
+                            
                         <ScrollableTabBar
                             style={styles.scrollStyle}
                             tabStyle={styles.tabStyle}
                             
                         >
+                        
+
                             <Text style={{width:200, backgroundColor:'red'}}>Helo world</Text>
                         </ScrollableTabBar>
                         
@@ -125,11 +127,12 @@ class Favourite extends Component{
                         tabBarInactiveTextColor={'#969696'}
                         tabBarActiveTextColor={'black'}
                         tabBarUnderlineStyle={styles.underlineStyle}
-                        initialPage={1}
+                        initialPage={0}
                     >
 
                         <Saved key={'1'} tabLabel={'Saved(22)'} style={{flex:1}} nav={this.props.navigation}/>
                         <View key={'2'} tabLabel={'Purchased(4)'} style={{flex:1}}/>
+                        {/* <View key={'3'} tabLabel={' '} TabIcon={<Image source={require('../../assets/icons/equal.png')} style={{width:wp(5),height:wp(5)}}/>}/> */}
                     </ScrollableTabView>
 
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, TextInput,FlatList, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
+import {View, Text, TouchableOpacity,FlatList, TextInput, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
+
 
 var flatListData=[
     {
@@ -25,16 +26,15 @@ var flatListData=[
     }
 ]
 
-class Home extends Component{
+class Explore extends Component{
     render(){
         return(
-            <View style={{marginTop:hp(5)}}>
+            <View style={{flex:1}}>
                 <FlatList
-                horizontal
                 data={flatListData}
                 renderItem={(item,index)=>
                     <View style={styles.cardContainer}>
-                        <Image source={require('../../assets/images/image6.jpeg')} style={{width:wp(66),height:wp(40),alignSelf:'center'}} resizeMode={'cover'}/>
+                        <Image source={require('../../assets/images/image6.jpeg')} style={{width:wp(88),height:wp(55),alignSelf:'center'}} resizeMode={'cover'}/>
                         <TouchableOpacity style={styles.CardRowContent} onPress={()=>this.props.nav.navigate('ChatScreen')}>
                             <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(10),height:wp(10),borderRadius:wp(5)}} resizeMode='cover'/>
 
@@ -54,19 +54,20 @@ class Home extends Component{
 
 const styles=StyleSheet.create({
     cardContainer:{
-        width:wp(70),
+        width:wp(92),
         padding:wp(2),
         shadowColor: '#c5c4c4',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 3,
         elevation: 1,
-        marginLeft:wp(2),
+        marginHorizontal:wp(4),
         backgroundColor:'#ffffff',
+        marginTop:hp(2)
         
     },
     CardRowContent:{
-        width:wp(66),
+        width:wp(88),
         //height:wp(20),
         marginTop:hp(1),
         flexDirection:'row',
@@ -95,4 +96,4 @@ const styles=StyleSheet.create({
     }
 })
 
-export default Home
+export default Explore
