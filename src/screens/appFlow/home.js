@@ -126,6 +126,36 @@ class Home extends Component{
         return(
         <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
             <ScrollView style={{paddingBottom:hp(5)}}>
+
+
+                {/* Header Image + Search Box */}
+                <ImageBackground source={require('../../assets/images/header.jpg')} style={{width:wp(100),height:wp(60)}} resizeMode={'cover'}>
+
+                    <Image source={require('../../assets/images/logo.png')} style={{width:wp(8),height:wp(8),marginTop:hp(4),alignSelf:'center'}} resizeMode={'contain'}/>
+                    <Text style={{fontFamily:'RobotoCondensed-Bold',fontSize:24,color:'#ffffff', width:wp(70),overflow:'hidden',marginLeft:wp(10),marginTop:hp(2),fontWeight:'bold',}}>Create, Connect, and Collaborate.</Text>
+                    <View style={styles.searchCard}>
+                        <Image
+                        source={require("../../assets/icons/search.png")}
+                        resizeMode="contain"
+                        style={{
+                            height: wp("5"),
+                            width: wp("5"),
+                            borderRightWidth: 3,
+                            borderColor: "#D5D5E0",
+                            marginLeft:wp(4),
+                        }}
+                        />
+
+                        <TextInput 
+                            style={{width:wp(60),marginLeft:wp(2)}}
+                            placeholder='Search for artists or events'
+                            placeholderTextColor='grey'
+                        />
+                        <TouchableOpacity>
+                            <Image source={require('../../assets/icons/Microphone.png')} style={{width:wp(5),height:wp(5),alignSelf:'flex-end',marginLeft:wp(6)}} resizeMode={'contain'}/>
+                        </TouchableOpacity>
+                    </View>
+                </ImageBackground>
                 
                 {/* Artists to Follow Part */}
                 <ListHeader headerName={'Artists to follow'} viewText={'View more'}/>
@@ -268,6 +298,16 @@ const styles=StyleSheet.create({
         //height:wp(60),
         marginBottom:hp(2),
         paddingBottom:wp(2)
+    },
+    searchCard:{
+        height: wp("12"),
+        width: wp("88"),
+        backgroundColor: "#fff",
+        alignSelf: "center",
+        marginTop: hp(2),
+        alignItems: "center",
+        borderRadius:25,
+        flexDirection: "row",
     },
     CardRowContent:{
         width:wp(66),

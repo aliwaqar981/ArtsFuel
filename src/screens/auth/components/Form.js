@@ -21,10 +21,14 @@ export default class Form extends Component{
             <View style={styles.container}>
                 <TextInput style={styles.inputBox} 
                     placeholder="Email"
-                    placeholderTextColor="#fff" />
+                    placeholderTextColor="#fff" >
+                </TextInput>
+
                 <TextInput style={styles.inputBox} 
-                    placeholder="Password"
-                    placeholderTextColor="#fff" />
+                    placeholder="Email"
+                    placeholderTextColor="#fff" >
+                </TextInput>
+            
                 <TouchableOpacity style={styles.button} onPress={this.SubmitHandler}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
@@ -48,8 +52,8 @@ const styles = StyleSheet.create({
         paddingHorizontal : 16,
         fontSize : 16,
         color : '#fff',
-        marginVertical: 15
-    },
+        marginTop:hp(3)
+        },
 
 
     button:{
@@ -58,7 +62,8 @@ const styles = StyleSheet.create({
         borderRadius : 25,
         paddingVertical : 12,
         marginVertical : 16,
-        alignItems:"center"
+        alignItems:"center",
+        marginTop:hp(5)
     },
     buttonText : {
         fontSize:16,

@@ -65,19 +65,26 @@ class MapSearch extends Component{
 
      {/* Search Bar */}
      <View style={styles.searchCard}>
-            <Image
-              source={require("../../assets/SearchIcon.png")}
-              resizeMode="contain"
-              style={{
-                height: wp("5"),
-                width: wp("5"),
-                borderRightWidth: 3,
-                borderColor: "#D5D5E0",
-                marginLeft:wp(4)
-              }}
-            />
+          <Image
+          source={require("../../assets/icons/search.png")}
+          resizeMode="contain"
+          style={{
+              height: wp("5"),
+              width: wp("5"),
+              borderRightWidth: 3,
+              borderColor: "#D5D5E0",
+              marginLeft:wp(4),
+          }}
+          />
 
-
+          <TextInput 
+              style={{width:wp(60),marginLeft:wp(2)}}
+              placeholder='Search for artists or events'
+              placeholderTextColor='grey'
+          />
+          <TouchableOpacity>
+              <Image source={require('../../assets/icons/Microphone.png')} style={{width:wp(5),height:wp(5),alignSelf:'flex-end',marginLeft:wp(6)}} resizeMode={'contain'}/>
+          </TouchableOpacity>
       </View>
 
 
@@ -125,7 +132,6 @@ const styles=StyleSheet.create({
         backgroundColor: "#fff",
         alignSelf: "center",
         marginTop: wp("8"),
-        justifyContent: "space-between",
         alignItems: "center",
         borderRadius:25,
         flexDirection: "row",
