@@ -26,17 +26,17 @@ export default class Signin extends Component {
 
 const styles = StyleSheet.create({
     container : {
-        backgroundColor: '#FFF',
         flex: 1,
         alignItems: "center",
-        justifyContent: 'center',
+        backgroundColor:'#ffffff'
+        //justifyContent: 'center',
     },
     signupText:{
         color:'rgba(196,35,44,0.7)',
         fontSize:16,
     },
     signupTextCont:{
-        flexGrow : 1,
+        //flexGrow : 1,
         alignContent: "center",
         justifyContent:"flex-end",
         marginVertical:16

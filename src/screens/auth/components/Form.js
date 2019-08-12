@@ -19,6 +19,7 @@ export default class Form extends Component{
     render(){
         return(
             <View style={styles.container}>
+                <View>
                 <TextInput style={styles.inputBox} 
                     placeholder="Email"
                     placeholderTextColor="#fff" >
@@ -28,6 +29,7 @@ export default class Form extends Component{
                     placeholder="Email"
                     placeholderTextColor="#fff" >
                 </TextInput>
+                </View>
             
                 <TouchableOpacity style={styles.button} onPress={this.SubmitHandler}>
                     <Text style={styles.buttonText}>Login</Text>
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         flex: 1,
         alignItems: "center",
-        justifyContent: 'center',
+        //justifyContent: 'center',
     },
 
     inputBox : {

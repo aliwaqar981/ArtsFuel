@@ -66,8 +66,12 @@ class Profile extends Component{
         return(
             <SafeAreaView style={{flex:1}}>
                 <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', paddingHorizontal:wp(4), marginTop:hp(2)}}>
-                <Text style={{color:'#969696',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3),}}>Edit Profile</Text>
-                    <Text style={{color:'red',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3)}}>Upload Work</Text>
+                    <TouchableOpacity>
+                        <Text style={{color:'#969696',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3),}}>Edit Profile</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Text style={{color:'red',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3)}}>Upload Work</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={{alignSelf:'center', marginTop:hp(1)}}>
