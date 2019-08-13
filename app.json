@@ -1,4 +1,7 @@
 {
   "name": "ArtsFuel",
-  "displayName": "ArtsFuel"
+  "displayName": "ArtsFuel",
+  "config":{
+    "googleMapsApiKey": "AIzaSyAj52FCOPKggOM54nElLEvduJIEeeWsTC0"
+  }
 }
