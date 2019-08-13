@@ -36,9 +36,8 @@ const styles = StyleSheet.create({
         fontSize:16,
     },
     signupTextCont:{
-        //flexGrow : 1,
         alignContent: "center",
-        justifyContent:"flex-end",
+        //justifyContent:"flex-end",
         marginVertical:16
     }
 });

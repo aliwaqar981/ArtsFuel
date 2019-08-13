@@ -41,7 +41,7 @@ class Favourite extends Component{
                 >
 
                     <Saved key={'1'} tabLabel={'Saved(22)'} nav={this.props.navigation}/>
-                    <View key={'2'} tabLabel={'Purchased(4)'} style={{flex:1,backgroundColor:'red'}}/>
+                    <Purchased key={'2'} tabLabel={'Purchased(4)'}/>
                     {/* <View key={'3'} tabLabel={' '} TabIcon={<Image source={require('../../assets/icons/equal.png')} style={{width:wp(5),height:wp(5)}}/>}/> */}
                 </ScrollableTabView>
             </SafeAreaView>
@@ -49,21 +49,29 @@ class Favourite extends Component{
     }
 }
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//********************************* Saved Scrollable Tab ************************************//
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 class Saved extends Component{
 
     render(){
         return(
             <View style={{flex:1}}>
             <MasonryList
-                spacing={2}
+                spacing={5}
                 backgroundColor={'#F6F6F6'}
                 renderIndividualFooter={()=>
-                    <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-                        <View>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center', marginBottom:hp(1.5)}}>
+                        <View >
                             <Text style={styles.itemNameText}>Ancestor Guitar</Text>
                             <Text style={styles.priceText}>$1,200.00</Text>
                         </View>
-                        <TouchableOpacity onPress={()=>this.props.nav.navigate('CartScreen')} style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2)}}></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.props.nav.navigate('CartScreen')} style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2), justifyContent:'center',alignItems:'center'}}>
+                            <Image source={require('../../assets/icons/cart3.png')} style={{width:wp(4),height:wp(4)}}/>
+                        </TouchableOpacity>
                     </View>
                 }
                     images={[
@@ -112,6 +120,65 @@ class Saved extends Component{
         )
     }
 }
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//********************************* Purchased Scrollable Tab ************************************//
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+class Purchased extends Component{
+
+    render(){
+        return(
+            <View style={{flex:1}}>
+            <MasonryList
+                spacing={5}
+                backgroundColor={'#F6F6F6'}
+                renderIndividualFooter={()=>
+                    <View style={{flexDirection:'row',alignItems:'center', marginBottom:hp(1.5)}}>
+                        <View>
+                            <Text style={styles.itemNameText}>Ancestor Guitar</Text>
+                            <Text style={styles.priceText}>$1,200.00</Text>
+                        </View>
+                        {/* <TouchableOpacity onPress={()=>this.props.nav.navigate('CartScreen')} style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2), justifyContent:'center',alignItems:'center'}}>
+                            <Image source={require('../../assets/icons/cart3.png')} style={{width:wp(4),height:wp(4)}}/>
+                        </TouchableOpacity> */}
+                    </View>
+                }
+                    images={[
+                        
+                        { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" ,
+                        dimensions: { width: 1080, height: 1420 },
+
+                    },
+                        
+                        { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
+                            dimensions: { width: 1080, height: 1820 },
+                            containerWidth:wp(35)
+                        },
+                        { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg",
+                            id: "blpccx4cn" ,
+                            dimensions: { width: 1080, height: 1420 },
+
+                        },
+                        { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg",
+                            dimensions: { width: 1080, height: 1820 },
+                            containerWidth:wp(35)
+                        },
+                        { URI: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg",
+                            id: "blpccx4cn" ,
+                            dimensions: { width: 1080, height: 1420 },
+
+                        },
+                    ]}
+                >
+            </MasonryList>
+            </View>
+        )
+    }
+}
+
 
 const styles=StyleSheet.create({
     // tabStyles:{

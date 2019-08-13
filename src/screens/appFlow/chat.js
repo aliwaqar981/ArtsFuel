@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
-import { GiftedChat,Bubble,InputToolbar,Send,Actions,Composer,Avatar } from 'react-native-gifted-chat'
+import { GiftedChat,Bubble,InputToolbar,Send,Actions,Composer,Avatar,Time,Day } from 'react-native-gifted-chat'
 
 
 class chat extends Component{
@@ -32,6 +32,7 @@ state = {
       messages: GiftedChat.append(previousState.messages, messages),
     }))
   }
+
 
   render() {
     return (
@@ -70,6 +71,18 @@ state = {
                 }}
               />
           }
+
+          renderTime={(props)=> 
+                <Time
+                {...props}
+                    textStyle={{
+                        right: {
+                            color: 'black',
+                        },
+                    }}
+                />
+        }
+          
           // renderSend={(props)=>
           //   <TouchableOpacity onPress={props.onSend}>
           //     <Image source={require('../../assets/icons/send.png')} style={{width:wp(5),height:wp(5)}}/>

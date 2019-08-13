@@ -49,6 +49,36 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
         image: require('../../assets/images/image6.jpeg'),
         
     },
+    {
+        key: 10,
+        image: require('../../assets/images/image4.jpeg'),
+        
+    },
+    {
+        key: 11,
+        image: require('../../assets/images/image5.jpg'),
+        
+    },
+    {
+        key: 12,
+        image: require('../../assets/images/image6.jpeg'),
+        
+    },
+    {
+        key: 13,
+        image: require('../../assets/images/image4.jpeg'),
+        
+    },
+    {
+        key: 14,
+        image: require('../../assets/images/image5.jpg'),
+        
+    },
+    {
+        key: 15,
+        image: require('../../assets/images/image6.jpeg'),
+        
+    },
 ]
 
 
@@ -93,7 +123,7 @@ class Profile extends Component{
                     data={image_Data}
                     numColumns={3}
                     renderItem={(item)=>this._list(item)}
-                    style={{alignSelf:'center', marginTop:hp(3)}}
+                    style={{alignSelf:'center', marginTop:hp(2)}}
                 />
 
             </SafeAreaView>

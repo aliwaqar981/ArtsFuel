@@ -339,7 +339,7 @@ const styles=StyleSheet.create({
         color:'#969696',
         fontFamily:'Roboto-Regular',
         fontSize:13,
-        marginLeft:wp(3),
+        //marginLeft:wp(3),
     },
     descriptionText:{
         width:wp(70),
