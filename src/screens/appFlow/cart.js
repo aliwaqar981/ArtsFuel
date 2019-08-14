@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
+import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Platform,ImageBackground,SafeAreaView} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
 
 import ImageSlider from 'react-native-image-slider';
@@ -12,7 +12,25 @@ class Cart extends Component{
         
 
         return(
-            <View style={{flex:1}}>
+            <SafeAreaView style={{flex:1}}>
+
+                {/* Header Part Start */}
+
+                <View style={{flexDirection:'row',justifyContent:'space-between',width:wp(100),height:wp(15),alignItems:'center',}}>
+                    <TouchableOpacity onPress={()=>this.props.navigation.pop()}>
+                        <Image source={require('../../assets/icons/backArrow.png')} style={{width:wp(4.5),height:wp(4.5),marginLeft:wp(4)}} resizeMode='contain'/>
+                    </TouchableOpacity>
+
+                    <Text style={styles.itemNameText}>Explore artworks</Text>
+    
+                    <TouchableOpacity style={{alignItems:'center',justifyContent:'center', marginRight:wp(4), width:wp(9),height:wp(9), borderRadius:wp(4.5),backgroundColor:'#ffffff',borderWidth:1,borderColor:'#F6F6F6',justifyContent:'center',alignItems:'center'}}>
+                        <Image source={require('../../assets/icons/dropActive.png')} style={{width:wp(4),height:wp(4)}} resizeMode='contain'/>                
+                    </TouchableOpacity>
+                </View>
+
+                {/* Header Paet End */}
+
+
                 <View style={{height:hp(35)}}>
                     <ImageSlider images={[
                         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg',
@@ -49,10 +67,11 @@ class Cart extends Component{
                 </View>
 
                 <TouchableOpacity style={styles.buyButton}>
-                    <Text style={{color:'white',fontFamily:'Roboto-Regular',fontSize:16,fontWeight:'300'}}>Fine Art</Text>
+                    <Image source={require('../../assets/icons/cart.png')} style={{width:wp(4),height:wp(4)}}/>
+                    <Text style={{color:'#B29A70',fontFamily:'Roboto-Regular',fontSize:14,fontWeight:'bold', marginLeft:wp(2)}}>Buy Now</Text>
                 </TouchableOpacity>
 
-            </View>
+            </SafeAreaView>
         )
     }
 }
@@ -76,7 +95,19 @@ const styles=StyleSheet.create({
         bottom:0,
         backgroundColor:'#EED9B4',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        flexDirection:'row'
+    },
+    itemNameText:{
+        fontFamily:'Roboto-Bold',
+        color:'#000000',
+        fontSize:16,
+        fontWeight:'bold'
+    },
+    priceText:{
+        color:'#969696',
+        fontFamily:'Roboto-Regular',
+        fontSize:11,
     }
 })
 

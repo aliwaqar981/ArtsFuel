@@ -151,7 +151,7 @@ class Home extends Component{
                             placeholder='Search for artists or events'
                             placeholderTextColor='grey'
                         />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('FacebookTabBar')}>
                             <Image source={require('../../assets/icons/Microphone.png')} style={{width:wp(5),height:wp(5),alignSelf:'flex-end',marginLeft:wp(6)}} resizeMode={'contain'}/>
                         </TouchableOpacity>
                     </View>

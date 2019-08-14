@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity,FlatList, TextInput, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
+import {View, Text, TouchableOpacity,FlatList, TextInput, StyleSheet, Image, Platform,ImageBackground,SafeAreaView} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
+import Header1 from '../../helpers/header1'
 
 
 var flatListData=[
@@ -30,6 +31,10 @@ class Explore extends Component{
     render(){
         return(
             <View style={{flex:1}}>
+                <Header1 nav={this.props.navigation}/>
+                <View style={{backgroundColor:'#F6F6F6',width:wp(100),height:1}}/>
+
+
                 <FlatList
                 data={flatListData}
                 renderItem={(item,index)=>

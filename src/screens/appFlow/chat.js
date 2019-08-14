@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
 import { GiftedChat,Bubble,InputToolbar,Send,Actions,Composer,Avatar,Time,Day } from 'react-native-gifted-chat'
+import Header from '../../helpers/header'
+
+
 
 
 class chat extends Component{
@@ -36,6 +39,10 @@ state = {
 
   render() {
     return (
+      <View style={{flex:1}}>
+        <Header nav={this.props.navigation}/>
+        <View style={{backgroundColor:'#F6F6F6',width:wp(100),height:1}}/>
+
       <GiftedChat
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}        
@@ -94,7 +101,7 @@ state = {
           renderInputToolbar={(props)=>
     
                <InputToolbar {...props} containerStyle={{justifyContent:'center'}}>
-                 <Image {...props} source={require('../../assets/icons/send.png')} style={{width:wp(7),height:wp(7),marginRight:wp(3)}}/> 
+                 <Image {...props} source={require('../../assets/icons/sendMessageRed.png')} style={{width:wp(6),height:wp(6),marginRight:wp(5)}}/> 
                </InputToolbar>
             
           }
@@ -114,6 +121,8 @@ state = {
           );
       }}
       />
+
+      </View>
     )
   }
 }

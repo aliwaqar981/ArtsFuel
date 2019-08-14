@@ -5,7 +5,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
 // import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,TabBar } from 'react-native-scrollable-tab-view';
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar } from 'react-native-scrollable-tab-view-forked'
 import MasonryList from "react-native-masonry-list"
-
+import FacebookTabBar from './fbtabs'
 
 
 
@@ -22,13 +22,13 @@ class Favourite extends Component{
             <SafeAreaView style={{flex:1}}>
                 <ScrollableTabView
 
-                    renderTabBar={() => (
+                    renderTabBar={(props) => (
                         
                     <ScrollableTabBar
                         style={styles.scrollStyle}
                         tabStyle={styles.tabStyle}   
                     >
-                        <Text style={{width:200, backgroundColor:'red'}}>Helo world</Text>
+                        {/* <Text style={{width:200, backgroundColor:'red'}}>Helo world</Text>  */}
                     </ScrollableTabBar>
                     
                     )}

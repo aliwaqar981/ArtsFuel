@@ -19,6 +19,8 @@ import Cart from '../src/screens/appFlow/cart'
 import Favourites from '../src/screens/appFlow/favourites'
 import Chat from '../src/screens/appFlow/chat'
 import Explore from '../src/screens/appFlow/exploreArt'
+import FacebookTabBar from '../src/screens/appFlow/fbtabs'
+
 
 const AuthStack = createSwitchNavigator({
     SignupScreen: Signup ,
@@ -42,17 +44,30 @@ const AuthStack = createSwitchNavigator({
       }
     },
     CartScreen:{
-      screen:Cart
+      screen:Cart,
+      navigationOptions:{
+        header:null
+      }
     },
     ChatScreen:{
-      screen:Chat
+      screen:Chat,
+      navigationOptions:{
+        header:null
+      }
     },
     ExploreScreen:{
       screen:Explore,
       navigationOptions:{
-        title:'Explore artswork',
+        header:null
       },
     },
+
+    FacebookTabBar:{
+      screen:FacebookTabBar,
+      navigationOptions:{
+        header:null
+      }
+    }
     
     // DashboardScreen: {
     //     screen: Dashboard,
