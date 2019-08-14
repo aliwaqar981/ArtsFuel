@@ -127,7 +127,7 @@ const ArticleList=()=>{
 
             <View style={{alignSelf:'center',overflow:'hidden',marginLeft:wp(4)}}>
                 <Text style={{color:'black',fontFamily:'Roboto-Regular',fontSize:12}}>One Sunny Afternoon</Text>
-                <Text style={{width:wp(45),color:'black',fontFamily:'Roboto-Regular',fontSize:14,fontWeight:'bold'}}>Contemporary Art Exibit 2019</Text>
+                <Text style={{width:wp(45),color:'black',fontFamily:'Roboto-Regular',fontSize:14,fontWeight:'bold'}}>Contemporary Art Exibit 2019  is being held in NY</Text>
             </View>
         </View>
     )
