@@ -6,153 +6,112 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
 class Signup extends Component{
     render(){
         return(
-            <ImageBackground source={require('../../assets/appview.png')} style={{flex:1,}} resizeMode={'cover'}>
             <View style={styles.container}>
-                <View style={styles.logo}>
-                    <Text style={{color:'black', fontSize:50}}>tag</Text>
-                </View>
-
-                <View style={[styles.smallInputField,{marginTop:hp(6)}]}>
-                    <Image source={require('../../assets/user.png')} style={{width:wp(4),height:wp(4),marginLeft:wp(2)}} resizeMode={'contain'}/>
-                    <TextInput
-                        placeholder='Name' placeholderTextColor='#505f79'
-                        autoCapitalize='none'
-                        //keyboardType="email-address"
-                        style={styles.smallInput}
-                        onChangeText={(value) => this.setState({ email: value })}
-
+                <View style={styles.containerLogo}>
+                    <Image
+                        style={{width: 70, height: 70}}
+                        source={require('../../assets/icons/logo.jpeg')}
                     />
+                    <Text style={styles.logoDesign}>Welcome to Arts Fuel</Text>
                 </View>
 
-                <View style={styles.smallInputField}>
-                    <Image source={require('../../assets/mail.png')} style={{width:wp(4),height:wp(4),marginLeft:wp(2)}} resizeMode={'contain'}/>
-                    <TextInput
-                        placeholder='Email' placeholderTextColor='#505f79'
-                        autoCapitalize='none'
-                        keyboardType="email-address"
-                        style={styles.smallInput}
-                        onChangeText={(value) => this.setState({ email: value })}
+                <View style={styles.containerForm}>
+                    <View>
+                        <TextInput style={styles.inputBox} 
+                            placeholder="Full Name"
+                            placeholderTextColor="#fff" >
+                        </TextInput>
 
-                    />
+                        <TextInput style={styles.inputBox} 
+                            placeholder="Email"
+                            placeholderTextColor="#fff" >
+                        </TextInput>
+
+                        <TextInput style={styles.inputBox} 
+                            placeholder="Password"
+                            placeholderTextColor="#fff" >
+                        </TextInput>
+                    </View>
+                
+                    <TouchableOpacity style={styles.button} onPress={this.SubmitHandler}>
+                        <Text style={styles.buttonText}>Register</Text>
+                    </TouchableOpacity>
                 </View>
 
-                <View style={styles.smallInputField}>
-                    <Image source={require('../../assets/hash.png')} style={{width:wp(4),height:wp(4),marginLeft:wp(2)}} resizeMode={'contain'}/>
-                    <TextInput
-                        placeholder='Address' placeholderTextColor='#505f79'
-                        autoCapitalize='none'
-                        //keyboardType="email-address"
-                        style={styles.smallInput}
-                        onChangeText={(value) => this.setState({ email: value })}
-
-                    />
+                <View style={styles.signupTextCont}>
+                    <Text style={styles.signupText}>Don't have an account yet?</Text>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('SigninScreen')}>
+                        <Text style={[styles.signupText, {textAlign:'center',fontWeight:'bold',fontSize:20}]}>LogIn</Text>
+                    </TouchableOpacity>
                 </View>
-
-                <View style={styles.smallInputField}>
-                    <Image source={require('../../assets/unlock.png')} style={{width:wp(4),height:wp(4),marginLeft:wp(2)}} resizeMode={'contain'}/>
-                    <TextInput
-                        placeholder='Password' placeholderTextColor='#505f79'
-                        autoCapitalize='none'
-                        //keyboardType="email-address"
-                        style={styles.smallInput}
-                        onChangeText={(value) => this.setState({ password: value })}
-
-                    />
-                </View>
-
-                <TouchableOpacity 
-                onPress={()=>this.props.navigation.navigate('HomeScreen')}
-                style={[Platform.OS == 'ios' ? styles.buttonRedIos : styles.buttonRedAndroid]}>
-                    <Text style={{color:'#ffffff',fontSize:15}}>REGISTER</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={{marginTop:hp(2)}} onPress={()=>this.props.navigation.navigate('SigninScreen')}>
-                    <Text style={{fontSize:15,color:'#ffffff'}}>Login</Text>
-                </TouchableOpacity>
             </View>
-            </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
+    containerLogo:{
+        //flexGrow:1,
+        //justifyContent:'f',
+        marginTop:100,
+        alignItems: 'center',
+        marginVertical: 16,
+    },
+    logoDesign : {
+        marginVertical: 15,
+        marginBottom: 40,
+        fontSize: 20,
+        color: 'rgba(196,35,44,0.7)'
+    },
+    container : {
         flex: 1,
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent:'center',
+        alignItems: "center",
+        backgroundColor:'#ffffff'
+        //justifyContent: 'center',
     },
-    logo: {
-        width:wp(30), 
-        height:wp(30), 
-        backgroundColor:'#ffffff', 
-        borderRadius:10,
-        justifyContent:'center',
-        alignItems:'center',
+
+    containerForm : {
+        backgroundColor: '#FFF',
+        flex: 1,
+        alignItems: "center",
+        //justifyContent: 'center',
     },
-    smallInputField: {
-        borderRadius:5,
-        marginTop: hp('2'),
-        backgroundColor:'#f4f5f7',
-        flexDirection:'row',
-        alignItems:'center',
+
+    inputBox : {
+        width:wp(80),
+        backgroundColor : 'rgb(226,233,238)',
+        borderRadius : 25,
+        paddingHorizontal : 16,
+        
+        fontSize : 16,
+        color : '#fff',
+        marginTop:hp(3)
+        },
+
+
+    button:{
+        width:wp(80),
+        backgroundColor : 'rgb(196,35,44)',
+        borderRadius : 25,
+        paddingVertical : 12,
+        marginVertical : 16,
+        alignItems:"center",
+        marginTop:hp(5)
     },
-    smallInput: {
-        color: '#505f79',
-        fontSize: 15, //12
-        fontWeight: '300',
-        height: wp('12'),
-        width: wp('60'),
-        marginLeft:wp(4),
+    buttonText : {
+        fontSize:16,
+        fontWeight:'500',
+        color:'#fff'
     },
-    buttonRedIos: {
-        width: wp('70'),
-        height: wp('12'),
-        backgroundColor: '#bad049',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-        marginBottom: wp('4'),
-
-        borderWidth: 1,
-        borderRadius: 2,
-        borderColor: '#ddd',
-        borderBottomWidth: 0,
-        shadowColor: '#c5c4c4',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 3,
-        elevation: 1,
-        marginLeft: 5,
-        marginRight: 5,
-        marginTop: 10,
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-
-        marginTop: hp('3')
-
+    
+    signupText:{
+        color:'rgba(196,35,44,0.7)',
+        fontSize:16,
     },
-    buttonRedAndroid: {
-        width: wp('70'),
-        height: wp('12'),
-        backgroundColor: '#bad049',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-        marginBottom: wp('4'),
-
-        elevation: 3,
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-        marginTop: hp('3')
-
-
+    signupTextCont:{
+        alignContent: "center",
+        //justifyContent:"flex-end",
+        marginVertical:16
     },
 });
 

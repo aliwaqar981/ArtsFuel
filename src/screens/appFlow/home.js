@@ -116,6 +116,24 @@ const UpcomingList=()=>{
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+//************************************ Articles List ****************************************//
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+const ArticleList=()=>{
+    return(
+        <View style={styles.cardContainer4}>
+            <Image source={require('../../assets/images/image7.jpeg')} style={{width:wp(40),height:wp(30)}} resizeMode={'cover'}/>
+
+            <View style={{alignSelf:'center',overflow:'hidden',marginLeft:wp(4)}}>
+                <Text style={{color:'black',fontFamily:'Roboto-Regular',fontSize:12}}>One Sunny Afternoon</Text>
+                <Text style={{width:wp(45),color:'black',fontFamily:'Roboto-Regular',fontSize:14,fontWeight:'bold'}}>Contemporary Art Exibit 2019</Text>
+            </View>
+        </View>
+    )
+}
+
+
 //********************************************************************************************//
 //********************************************************************************************//
 //----------------------------- Main Home Screen Component -----------------------------------//
@@ -228,22 +246,34 @@ class Home extends Component{
                             dimensions: { width: 1080, height: 1420 },
                         },
                     ]}
-                >
-            </MasonryList>
-            <TouchableOpacity style={{width:wp(88),height:wp(10),borderWidth:0.5,marginBottom:hp(2),borderColor:'#969696', marginTop:hp(1),alignSelf:'center',justifyContent:'center',alignItems:'center'}}>
-                <Text style={[styles.priceText,{fontWeight:'bold'}]}>Load more</Text>
-            </TouchableOpacity>
+                    >
+                </MasonryList>
+                <TouchableOpacity style={{width:wp(88),height:wp(10),borderWidth:0.5,marginBottom:hp(2),borderColor:'#969696', marginTop:hp(1),alignSelf:'center',justifyContent:'center',alignItems:'center'}}>
+                    <Text style={[styles.priceText,{fontWeight:'bold'}]}>Load more</Text>
+                </TouchableOpacity>
 
-                    {/* Upcoming List Part */}
-                    <ListHeader headerName={'Upcoming events'} viewText={'View more'}/>
-                    <FlatList
-                        style={{marginLeft:wp(2),marginRight:wp(2)}}
-                        horizontal
-                        data={flatListData}
-                        renderItem={(item,index)=>
-                        <UpcomingList/>
-                    }>
-                    </FlatList>
+
+                {/* Upcoming List Part */}
+                <ListHeader headerName={'Upcoming events'} viewText={'View more'}/>
+                <FlatList
+                    style={{marginLeft:wp(2),marginRight:wp(2)}}
+                    horizontal
+                    data={flatListData}
+                    renderItem={(item,index)=>
+                    <UpcomingList/>
+                }>
+                </FlatList>
+
+                {/* Articles List */}
+                <ListHeader headerName={'Articles'} viewText={'View more'}/>
+                <FlatList
+                    style={{marginLeft:wp(2),marginRight:wp(2)}}
+                    data={flatListData}
+                    renderItem={(item,index)=>
+                    <ArticleList/>
+                }>
+                </FlatList>
+
 
             </ScrollView> 
         </View>
@@ -299,6 +329,14 @@ const styles=StyleSheet.create({
         marginBottom:hp(2),
         paddingBottom:wp(2)
     },
+    cardContainer4:{
+        marginTop:hp(2),
+        width:wp(90),
+        alignSelf:'center',
+        //height:wp(60),
+        paddingBottom:wp(2),
+        flexDirection:'row'
+    },
     searchCard:{
         height: wp("12"),
         width: wp("88"),
@@ -321,7 +359,7 @@ const styles=StyleSheet.create({
     headingText:{
         color:'black',
         fontFamily:'Roboto-Regular',
-        fontSize:14,
+        fontSize:16,
         fontWeight:'bold'
     },
     profileNameText:{

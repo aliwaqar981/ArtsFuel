@@ -4,6 +4,7 @@ import {
   View,
   Text,
   StatusBar,
+  TouchableOpacity
 } from 'react-native';
 
 import Logo from './components/Logo'
@@ -17,7 +18,9 @@ export default class Signin extends Component {
                 <Form nav={this.props.navigation}/>
                 <View style={styles.signupTextCont}>
                     <Text style={styles.signupText}>Don't have an account yet?</Text>
-                    <Text style={[styles.signupText, {textAlign:'center'}]}>SignUp</Text>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignupScreen')}>
+                        <Text style={[styles.signupText, {textAlign:'center',fontWeight:'bold',fontSize:20}]}>Register</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )

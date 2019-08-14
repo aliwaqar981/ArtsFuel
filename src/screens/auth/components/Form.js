@@ -26,7 +26,7 @@ export default class Form extends Component{
                 </TextInput>
 
                 <TextInput style={styles.inputBox} 
-                    placeholder="Email"
+                    placeholder="Password"
                     placeholderTextColor="#fff" >
                 </TextInput>
                 </View>
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
         backgroundColor : 'rgb(226,233,238)',
         borderRadius : 25,
         paddingHorizontal : 16,
+        
         fontSize : 16,
         color : '#fff',
         marginTop:hp(3)
