@@ -1,9 +1,46 @@
 import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Platform, ImageBackground} from 'react-native'
+import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image,ActivityIndicator, Platform, ImageBackground} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
+
+import { signUp, getCurrentUserId, connectFirebase } from "../../backend/firebase/auth";
 
 
 class Signup extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          name:"",
+          email: "",
+          password: "",
+          loader: false,
+          focusPasswordInput: false,
+          disableBtn:false,
+        };
+        this.onSignupFunc = this.onSignupFunc.bind(this);
+        this.focusPasswordInput = React.createRef();
+      }
+
+    
+    componentDidMount() {
+    connectFirebase();
+    }
+
+
+    async onSignupFunc() {
+        if (this.state.email == "" || this.state.password == "" || this.state.name=="") {
+          alert("Email, password and name fields cannot be empty");
+        } else {
+            this.setState({ loader: true ,disableBtn:true});
+          let callback = await signUp(this.state.email, this.state.password);
+          this.setState({ loader: false });
+          if (callback) {
+            let userId = await getCurrentUserId();
+            this.props.navigation.navigate("HomeScreen");
+          }
+        }
+      }  
+
     render(){
         return(
             <View style={styles.container}>
@@ -19,23 +56,35 @@ class Signup extends Component{
                     <View>
                         <TextInput style={styles.inputBox} 
                             placeholder="Full Name"
-                            placeholderTextColor="#fff" >
+                            placeholderTextColor="#fff" 
+                            onChangeText={name => this.setState({ name })}
+                            value={this.state.name}>
                         </TextInput>
 
                         <TextInput style={styles.inputBox} 
                             placeholder="Email"
-                            placeholderTextColor="#fff" >
+                            placeholderTextColor="#fff" 
+                            onChangeText={email => this.setState({ email })}
+                            value={this.state.email}>
                         </TextInput>
 
                         <TextInput style={styles.inputBox} 
                             placeholder="Password"
-                            placeholderTextColor="#fff" >
+                            placeholderTextColor="#fff"
+                            secureTextEntry={true} 
+                            onChangeText={password => this.setState({ password })}
+                            value={this.state.password}>
                         </TextInput>
                     </View>
                 
-                    <TouchableOpacity style={styles.button} onPress={this.SubmitHandler}>
+                    <TouchableOpacity style={styles.button} disabled={this.state.disableBtn} onPress={this.onSignupFunc}>
                         <Text style={styles.buttonText}>Register</Text>
                     </TouchableOpacity>
+
+                    {this.state.loader ? (
+                        <ActivityIndicator size="large" color='rgb(196,35,44)' />
+                    ) : null}
+
                 </View>
 
                 <View style={styles.signupTextCont}>
