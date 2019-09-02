@@ -66,6 +66,7 @@ const ToFollowList=()=>{
             <TouchableOpacity style={styles.followButton}>
                 <Text style={styles.buttonText}>Follow</Text>
             </TouchableOpacity>
+
         </View>
     )
 }
@@ -75,9 +76,13 @@ const ToFollowList=()=>{
 //******************************** Followed Artist's List ***********************************//
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-const FollowedList=()=>{
+class FollowedList extends Component{
+    state={
+        saved:false
+    }
+    render(){
     return(
-        <View style={styles.cardContainer2}>
+        <TouchableOpacity style={styles.cardContainer2} onPress={()=>this.props.nav.navigate('CartScreen')}>
             <Image source={require('../../assets/images/image7.jpeg')} style={{width:wp(66),height:wp(44),marginLeft:wp(2),marginTop:wp(2)}} resizeMode={'cover'}/>
             
             <View style={styles.CardRowContent}>
@@ -88,8 +93,19 @@ const FollowedList=()=>{
                     <Text style={styles.profileNameText}>Jon Garza</Text>                        
                 </View>
             </View>
-        </View>
+            <TouchableOpacity onPress={()=>this.setState(prevState => ({saved: !prevState.saved}))} style={styles.favouritIcon}>
+                {this.state.saved?
+                    [
+                        <Image source={require('../../assets/icons/fireRed.png')} style={{width:wp(5),height:wp(5)}} resizeMode='contain'/>
+                    ]:
+                    [
+                        <Image source={require('../../assets/icons/fireGrey.png')} style={{width:wp(5),height:wp(5)}} resizeMode='contain'/>
+                    ]
+                }
+            </TouchableOpacity>
+        </TouchableOpacity>
     )
+    }
 }
 
 
@@ -193,8 +209,8 @@ class Home extends Component{
                 style={{marginLeft:wp(2),marginRight:wp(2)}}
                 horizontal
                 data={flatListData}
-                renderItem={(item,index)=>
-                    <FollowedList/>
+                renderItem={({item,index})=>
+                    <FollowedList nav={this.props.navigation}/>
                 }>
                 </FlatList>
 
@@ -411,6 +427,21 @@ const styles=StyleSheet.create({
         alignItems:"center",
         alignSelf:'center',
         marginTop:hp(1.5)
+    },
+    favouritIcon:{
+        width:wp(8),height:wp(8),
+        borderRadius:wp(16),
+        backgroundColor:'#ffffff',
+        alignItems:'center',
+        justifyContent:'center',
+        shadowColor: '#8f8f8f',
+        shadowOffset: { width:0, height:2},
+        shadowOpacity: 0.5,
+        elevation: 2,
+        shadowRadius:2,
+        position:'absolute',
+        right:15,
+        top:15
     }
 })
 

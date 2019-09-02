@@ -2,13 +2,82 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Platform,ImageBackground} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
 import MapView from "react-native-maps";
+import Geolocation from '@react-native-community/geolocation';
 
 
 class MapSearch extends Component{
     state={
-        currentLongitude:37.78825,
-        currentLongitude:-122.4324
+        currentLatitude:41.467910,
+        currentLongitude:76.311069,
+
+        LATLNG: {
+            latitude: 31.467910,
+            longitude: 74.311069
+        },
+
+        artists : [
+            {
+              id: 1,
+              name: "Park Slope",
+              latitude: "31.468302",
+              longitude: "74.311632",
+              circle: {
+                radius: 3000,
+                options: {
+                  strokeColor: "#ff0000"
+                }
+              }
+            },
+            {
+                id: 2,
+                name: "Park Slope",
+                latitude: "31.467414",
+                longitude: "74.307368",
+                circle: {
+                  radius: 3000,
+                  options: {
+                    strokeColor: "#ff0000"
+                  }
+                }
+              },
+              {
+                id: 3,
+                name: "Park Slope",
+                latitude: "31.464872",
+                longitude: "74.311220",
+                circle: {
+                  radius: 3000,
+                  options: {
+                    strokeColor: "#ff0000"
+                  }
+                }
+              },
+              {
+                id: 4,
+                name: "Park Slope",
+                latitude: "31.468873",
+                longitude: "74.311878",
+                circle: {
+                  radius: 3000,
+                  options: {
+                    strokeColor: "#ff0000"
+                  }
+                }
+              },   
+          ] 
     }
+
+
+    componentDidMount(){
+        Geolocation.getCurrentPosition(info => {
+            console.log(info)
+            this.setState({
+            currentLatitude:info.coords.latitude,
+            currentLongitude:info.coords.longitude
+        })
+        });
+    }
+
     render(){
         return(
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
@@ -16,10 +85,11 @@ class MapSearch extends Component{
        //provider={PROVIDER_GOOGLE} // remove if not using Google Maps
        style={{ height: "100%", width: "100%" }}
        region={{
-         latitude: 37.78825,
-         longitude: -122.4324,
+         latitude: 31.467910,
+         longitude: 74.311069,
          latitudeDelta: 0.015,
          longitudeDelta: 0.0121,
+         
        }}
      >
          
@@ -34,8 +104,8 @@ class MapSearch extends Component{
 
 <MapView.Marker
                 coordinate={{
-                  latitude: 37.78825,
-                  longitude: -122.4324
+                  latitude: this.state.currentLatitude,
+                  longitude: this.state.currentLongitude
                 }}
                 title={"marker.title"}
                 description={"marker.description"}
@@ -46,20 +116,52 @@ class MapSearch extends Component{
                   resizeMode={"contain"}
                   style={{ width: wp(5), height: wp(5) }}
                 />
-                {/* <MapView.Circle
-                key = { (this.state.currentLongitude + this.state.currentLongitude).toString() }
-                center = { this.state.LATLNG }
-                radius = { 10000 }
-                strokeWidth = { 1 }
-                strokeColor = { '#1a66ff' }
-                fillColor = { 'rgba(230,238,255,0.5)' } */}
-                {/* // onRegionChangeComplete = { this.onRegionChangeComplete.bind(this) } */}
+            
+
+      
+
                         
 
               </MapView.Marker>
 
+              <MapView.Circle
+        center={{
+          latitude: this.state.currentLatitude,
+          longitude: this.state.currentLongitude,
+        }}
+        radius={200}
+        strokeWidth={2}
+        strokeColor={'#1a66ff'}
+        fillColor={'rgba(230,238,255,0.5)'}
+
+      />
+
               {/* User Card */}
               
+              {this.state.artists.map(artist=>{
+                  return(
+                    <MapView.Marker
+                    coordinate={{
+                      latitude: parseFloat(artist.latitude),
+                      longitude: parseFloat(artist.longitude)
+                    }}
+                    title={"marker.title"}
+                    description={"marker.description"}
+                    animation={true}
+                  >
+                    {/* <Image
+                      source={require("../../assets/LocationIcon.png")}
+                      resizeMode={"contain"}
+                      style={{ width: wp(5), height: wp(5) }}
+                    /> */}
+                    <TouchableOpacity style={styles.artistsOnMap}>
+                            <Image source={require('../../assets/person.png')} style={{width:wp(10),height:wp(10),borderRadius:wp(20)}} resizeMode='contain'/>
+                    </TouchableOpacity>
+    
+                  </MapView.Marker>
+                  )
+              })
+            }
 
      </MapView>
 
@@ -174,6 +276,18 @@ const styles=StyleSheet.create({
         // shadowOpacity: 0.5,
         // elevation: 2,
         // shadowRadius:2
+    },
+    artistsOnMap:{
+        width:wp(12),height:wp(12),
+        borderRadius:wp(24),
+        backgroundColor:'#ffffff',
+        alignItems:'center',
+        justifyContent:'center',
+        shadowColor: '#8f8f8f',
+        shadowOffset: { width:0, height:2},
+        shadowOpacity: 0.5,
+        elevation: 2,
+        shadowRadius:2
     }
 })
 

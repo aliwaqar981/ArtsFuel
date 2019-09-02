@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
+    "@react-native-community/geolocation": "^2.0.2",
     "firebase": "^6.4.0",
     "native-base": "^2.13.4",
     "react": "16.8.6",

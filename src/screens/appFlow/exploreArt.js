@@ -8,7 +8,7 @@ var flatListData=[
     {
         key:'1',
         name:'helo',
-        imageUrl:'https://www.belightsoft.com/products/imagetricks/img/intro-video-poster@2x.jpg',
+        imageUrl:'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
     },
     {
         key:'2',
@@ -18,7 +18,7 @@ var flatListData=[
     {
         key:'3',
         name:'helo',
-        imageUrl:'https://www.belightsoft.com/products/imagetricks/img/intro-video-poster@2x.jpg',
+        imageUrl:'https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg',
     },
     {
         key:'4',
@@ -37,11 +37,11 @@ class Explore extends Component{
 
                 <FlatList
                 data={flatListData}
-                renderItem={(item,index)=>
+                renderItem={({item,index})=>
                     <View style={styles.cardContainer}>
-                        <Image source={require('../../assets/images/image6.jpeg')} style={{width:wp(88),height:wp(55),alignSelf:'center'}} resizeMode={'cover'}/>
+                        <Image source={{uri:item.imageUrl}} style={{width:wp(88),height:wp(55),alignSelf:'center'}} resizeMode={'cover'}/>
                         <TouchableOpacity style={styles.CardRowContent} onPress={()=>this.props.nav.navigate('ChatScreen')}>
-                            <Image source={require('../../assets/images/image1.jpg')} style={{width:wp(10),height:wp(10),borderRadius:wp(5)}} resizeMode='cover'/>
+                            <Image source={{uri:item.imageUrl}} style={{width:wp(10),height:wp(10),borderRadius:wp(5)}} resizeMode='cover'/>
 
                             <View style={{marginLeft:wp(2)}}>
                                 <Text style={styles.itemNameText}>Ancestor Guitar</Text>

@@ -5,6 +5,8 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ScrollView,
+  Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
@@ -17,7 +19,7 @@ class FacebookTabBar extends React.Component {
   constructor(props) {
     super(props);
     this.icons = [];
-    this.lb=[];
+    //this.lb=[];
   }
 
   componentDidMount() {
@@ -32,11 +34,11 @@ class FacebookTabBar extends React.Component {
           color: this.iconColor(progress),
         },
       });
-      lb.setNativeProps({
-        style: {
-          color: this.iconColor(progress),
-        },
-      });
+      // lb.setNativeProps({
+      //   style: {
+      //     color: this.iconColor(progress),
+      //   },
+      // });
       
     });
   }
@@ -55,19 +57,31 @@ class FacebookTabBar extends React.Component {
     return <View style={[styles.tabs, this.props.style, ]}>
       {this.props.tabs.map((tab, i) => {
         return <TouchableOpacity key={tab} onPress={() => this.props.goToPage(i)} style={styles.tab}>
-          {/* <Icon
+          <View style={{flexDirection:'row', alignItems:'center'}}>
+          <Image
+            source={this.props.tabs[i].iconSrc}
+            style={{width:15,height:15,marginRight:4, marginTop:10}}
             name={tab}
-            size={30}
+            size={15}
             color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
             ref={(icon) => { this.icons[i] = icon; }}
-          /> */}
-          <Text>{this.props.tabs[i].tabLabel}</Text>
-          <View style={{height:5,width:wp(10),backgroundColor:'red',}}></View>
+          />
+          <Text style={{marginTop:10}}>{this.props.tabs[i].tabLabel}</Text>
+          </View>
+          {this.props.activeTab===i?[
+            <View style={{height:5,width:wp(20),backgroundColor:'red',marginTop:10}}></View>
+          ]:[
+            <View style={{height:5,width:wp(20),backgroundColor:'#ffffff',marginTop:10}}></View>
+          ]}
+          
         </TouchableOpacity>;
       })}
-      <View>
-          <Text>Hello world</Text>
-      </View>
+      <TouchableOpacity onPress={()=>this.props.nav.navigate('ExploreScreen')} style={{marginLeft:20, marginBottom:5}}>
+          <Image source={require('../../assets/icons/doubleDash.png')}/>
+      </TouchableOpacity>
+      <TouchableOpacity style={{marginLeft:20, marginBottom:5}}>
+          <Image source={require('../../assets/icons/gridActive.png')}/>
+      </TouchableOpacity>
     </View>;
   }
 }
@@ -80,8 +94,8 @@ const styles = StyleSheet.create({
     //paddingBottom: 10,
   },
   tabs: {
-    height: 45,
-    width:wp(90),
+    height: 55,
+    //width:wp(90),
     flexDirection: 'row',
     paddingTop: 5,
     borderWidth: 1,

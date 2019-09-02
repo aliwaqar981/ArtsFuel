@@ -20,16 +20,26 @@ class Favourite extends Component{
     render(){
         return(
             <SafeAreaView style={{flex:1}}>
+            {/* <TouchableOpacity onPress={()=>this.props.navigation.navigate('CartScreen')} 
+            style={{position:'absolute',right:20,backgroundColor:'red',zIndex:500}}
+            // style={{
+            //     alignSelf:'flex-end'
+            // }}
+            >
+                <Text>Hello </Text>
+             <Text>Hello World</Text>
+            </TouchableOpacity> */}
                 <ScrollableTabView
 
                     renderTabBar={(props) => (
                         
-                    <ScrollableTabBar
+                    <FacebookTabBar
                         style={styles.scrollStyle}
                         tabStyle={styles.tabStyle}   
+                        nav={this.props.navigation}
                     >
-                        {/* <Text style={{width:200, backgroundColor:'red'}}>Helo world</Text>  */}
-                    </ScrollableTabBar>
+                    </FacebookTabBar>
+                        // <Text style={{width:200, backgroundColor:'red',position:'absolute'}}>Helo world</Text> 
                     
                     )}
                     
@@ -38,11 +48,12 @@ class Favourite extends Component{
                     tabBarActiveTextColor={'black'}
                     tabBarUnderlineStyle={styles.underlineStyle}
                     initialPage={0}
+                    
                 >
 
-                    <Saved key={'1'} tabLabel={'Saved(22)'} nav={this.props.navigation}/>
-                    <Purchased key={'2'} tabLabel={'Purchased(4)'}/>
-                    {/* <View key={'3'} tabLabel={' '} TabIcon={<Image source={require('../../assets/icons/equal.png')} style={{width:wp(5),height:wp(5)}}/>}/> */}
+                    <Saved key={'1'} tabLabel={'Saved(22)'} iconSrc={require('../../assets/icons/fireGrey.png')} />
+                    <Purchased key={'2'} tabLabel={'Purchased(4)'} iconSrc={require('../../assets/icons/shopping-basket.png')}/>
+
                 </ScrollableTabView>
             </SafeAreaView>
         )
@@ -57,12 +68,29 @@ class Favourite extends Component{
 
 class Saved extends Component{
 
+    state={
+        savedId:0
+    }
+
     render(){
         return(
             <View style={{flex:1}}>
             <MasonryList
                 spacing={5}
                 backgroundColor={'#F6F6F6'}
+                onPressImage={(item,index)=>this.setState({savedId:item.id})}
+                renderIndividualHeader={(item,index)=>
+                    <TouchableOpacity onPress={()=>{item.saved==0?item.saved=1:item.saved=0,this.setState({savedId:item.id})}} style={styles.favouritIcon}>
+                            {item.saved==1?
+                                [
+                                    <Image source={require('../../assets/icons/fireRed.png')} style={{width:wp(5),height:wp(5)}} resizeMode='contain'/>
+                                ]:
+                                [
+                                    <Image source={require('../../assets/icons/fireGrey.png')} style={{width:wp(5),height:wp(5)}} resizeMode='contain'/>
+                                ]
+                            }
+                        </TouchableOpacity>
+                }
                 renderIndividualFooter={()=>
                     <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center', marginBottom:hp(1.5)}}>
                         <View >
@@ -72,6 +100,7 @@ class Saved extends Component{
                         <TouchableOpacity onPress={()=>this.props.nav.navigate('CartScreen')} style={{backgroundColor:'#eed9b4',width:wp(8),height:wp(8),borderRadius:4,marginRight:wp(2), justifyContent:'center',alignItems:'center'}}>
                             <Image source={require('../../assets/icons/cart3.png')} style={{width:wp(4),height:wp(4)}}/>
                         </TouchableOpacity>
+                        
                     </View>
                 }
                     images={[
@@ -80,6 +109,8 @@ class Saved extends Component{
                         
                         { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" ,
                         dimensions: { width: 1080, height: 1420 },
+                        id:101,
+                        saved:1
 
                     },
                     
@@ -95,21 +126,27 @@ class Saved extends Component{
                             // the actual width and height for REMOTE IMAGES
                             // will help improve performance.
                             dimensions: { width: 1080, height: 1820 },
+                            id:102,
+                            saved:0,
                             containerWidth:wp(35)
                         },
                         { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg",
                             // Optional: Does not require an id for each
                             // image object, but is for best practices.
-                            id: "blpccx4cn" ,
+                            id: 103 ,
+                            saved:1,
                             dimensions: { width: 1080, height: 1420 },
 
                         },
                         { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg",
                             dimensions: { width: 1080, height: 1820 },
+                            id:104,
+                            saved:0,
                             containerWidth:wp(35)
                         },
                         { URI: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg",
-                            id: "blpccx4cn" ,
+                            id: 105,
+                            saved:0,
                             dimensions: { width: 1080, height: 1420 },
 
                         },
@@ -186,20 +223,31 @@ const styles=StyleSheet.create({
     //     backgroundColor:'blue'
     // },
     tabStyle: {
-        width:150
+        //width:160,
+        backgroundColor:'blue',
       },
      scrollStyle: {
        backgroundColor: 'white',
+       justifyContent:'center',
+       alignItems:'center',
+       width:wp(95),
+       //height:20
      },
      tabBarTextStyle: {
        fontSize: 14,
        fontWeight: 'bold',
+       backgroundColor:'yellow',
+       width:wp(30),
+       //position:'absolute',top:-10
+       //alignSelf:'center'
+       //marginLeft:wp(6)
      },
      underlineStyle: {
        height: 3,
        backgroundColor: '#c4232c',
        borderRadius: 3,
-       width: 80,
+       width: wp(30),position:'absolute',left:0
+       //alignSelf:'flex-start'
      },
     itemNameText:{
         fontFamily:'Roboto-Italic',
@@ -212,6 +260,22 @@ const styles=StyleSheet.create({
         fontFamily:'Roboto-Regular',
         fontSize:13,
         marginLeft:wp(3),
+    },
+    favouritIcon:{
+        width:wp(8),height:wp(8),
+        borderRadius:wp(16),
+        backgroundColor:'#ffffff',
+        alignItems:'center',
+        justifyContent:'center',
+        shadowColor: '#8f8f8f',
+        shadowOffset: { width:0, height:2},
+        shadowOpacity: 0.5,
+        elevation: 2,
+        shadowRadius:2,
+        position:'absolute',
+        right:15,
+        top:15,
+        zIndex:10
     }
 })
 

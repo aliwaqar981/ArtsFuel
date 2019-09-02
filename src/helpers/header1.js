@@ -7,18 +7,18 @@ export default class Header1 extends Component{
         return(
             <View style={{flexDirection:'row',justifyContent:'space-between',width:wp(100),height:wp(15),alignItems:'center',}}>
                 <TouchableOpacity onPress={()=>this.props.nav.pop()}>
-                    <Image source={require('../assets/icons/backArrow.png')} style={{width:wp(4.5),height:wp(4.5),marginLeft:wp(4)}} resizeMode='contain'/>
+                    <Image source={require('../assets/icons/backArrow.png')} style={{marginLeft:wp(4)}} resizeMode='contain'/>
                 </TouchableOpacity>
 
                 <Text style={styles.itemNameText}>Explore artworks</Text>
  
                 <View style={{flexDirection:'row'}}>
                     <TouchableOpacity style={{alignItems:'center',justifyContent:'center', marginRight:wp(2)}}>
-                        <Image source={require('../assets/icons/doubleDashActive.png')} style={{width:wp(4),height:wp(4),marginLeft:wp(4)}} resizeMode='contain'/>                
+                        <Image source={require('../assets/icons/doubleDashActive.png')} style={{marginLeft:wp(4)}} resizeMode='contain'/>                
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{alignItems:'center',justifyContent:'center', marginRight:wp(6)}}>
-                        <Image source={require('../assets/icons/grid.png')} style={{width:wp(4),height:wp(4),marginLeft:wp(4)}} resizeMode='contain'/>                
+                    <TouchableOpacity onPress={()=>this.props.nav.navigate('Favourite')} style={{alignItems:'center',justifyContent:'center', marginRight:wp(6)}}>
+                        <Image source={require('../assets/icons/grid.png')} style={{marginLeft:wp(4)}} resizeMode='contain'/>                
                     </TouchableOpacity>
                 </View>
 

@@ -51,12 +51,12 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
     },
     {
         key: 10,
-        image: require('../../assets/images/image4.jpeg'),
+        image: require('../../assets/images/image5.jpg'),
         
     },
     {
         key: 11,
-        image: require('../../assets/images/image5.jpg'),
+        image: require('../../assets/images/image4.jpeg'),
         
     },
     {
@@ -66,7 +66,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
     },
     {
         key: 13,
-        image: require('../../assets/images/image4.jpeg'),
+        image: require('../../assets/images/image6.jpeg'),
         
     },
     {
@@ -76,7 +76,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
     },
     {
         key: 15,
-        image: require('../../assets/images/image6.jpeg'),
+        image: require('../../assets/images/image4.jpeg'),
         
     },
 ]
@@ -84,28 +84,50 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
 
 class Profile extends Component{
 
+    state={
+        isLoggedIn:true
+    }
+
     _list(item){
         return(
             <View>
-                <Image source={require('../../assets/images/image2.jpeg')} style={{width:wp(28), height:wp(28), marginHorizontal:wp(1.5), marginVertical:hp(1), borderRadius:4}}/>
+                <Image source={item.image} style={{width:wp(28), height:wp(28), marginHorizontal:wp(1.5), marginVertical:hp(1), borderRadius:4}}/>
             </View>
         )
     }
 
+
     render(){
         return(
             <SafeAreaView style={{flex:1}}>
-                <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', paddingHorizontal:wp(4), marginTop:hp(2)}}>
-                    <TouchableOpacity>
-                        <Text style={{color:'#969696',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3),}}>Edit Profile</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={{color:'red',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3)}}>Upload Work</Text>
-                    </TouchableOpacity>
-                </View>
+                {this.state.isLoggedIn?[
+                    <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', paddingHorizontal:wp(4), marginTop:hp(2)}}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.pop()}>
+                            <Image source={require('../../assets/icons/backArrow.png')} style={{marginLeft:wp(3)}} resizeMode='contain'/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Text style={{color:'rgb(196,35,44)',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3)}}>Follow</Text>
+                        </TouchableOpacity>
+                    </View>
+                ]:[
+                    <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', paddingHorizontal:wp(4), marginTop:hp(2)}}>
+                        <TouchableOpacity>
+                            <Text style={{color:'#969696',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3),}}>Edit Profile</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Text style={{color:'rgb(196,35,44)',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3)}}>Upload Work</Text>
+                        </TouchableOpacity>
+                    </View>
+                ]}
+                
 
                 <View style={{alignSelf:'center', marginTop:hp(1)}}>
                     <Image style={{width:wp(30),height:wp(30), borderRadius:wp(15)}} source={require('../../assets/person.png')} resizeMode='cover'/>
+                    <TouchableOpacity style={styles.favouritIcon}>
+                        <View style={{backgroundColor:'rgb(196,35,44)', height:wp(5),width:wp(5),borderRadius:wp(10)}}>
+                            <Image source={require('../../assets/icons/fireRed.png')} style={{width:wp(5),height:wp(5)}} resizeMode='contain'/>   
+                       </View>  
+                    </TouchableOpacity>
                 </View>
                 
                 <View style={{alignSelf:'center', marginTop:hp(2)}}>
@@ -122,7 +144,7 @@ class Profile extends Component{
                 <FlatList
                     data={image_Data}
                     numColumns={3}
-                    renderItem={(item)=>this._list(item)}
+                    renderItem={({item})=>this._list(item)}
                     style={{alignSelf:'center', marginTop:hp(2)}}
                 />
 
@@ -164,6 +186,16 @@ const styles=StyleSheet.create({
         // shadowOpacity: 0.5,
         // elevation: 2,
         // shadowRadius:2
+    },
+    favouritIcon:{
+        width:wp(6),height:wp(6),
+        borderRadius:wp(12),
+        backgroundColor:'#ffffff',
+        alignItems:'center',
+        justifyContent:'center',
+        position:'absolute',
+        right:10,
+        bottom:-5
     }
 })
 
