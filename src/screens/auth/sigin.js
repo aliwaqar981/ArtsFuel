@@ -45,6 +45,8 @@ export default class Signin extends Component {
           if (callback) {
             let userId = await getCurrentUserId();
             this.props.navigation.navigate("HomeScreen");
+          }else{
+              this.setState({disableBtn:false})
           }
         }
       }

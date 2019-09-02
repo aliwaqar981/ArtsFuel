@@ -85,7 +85,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpe
 class Profile extends Component{
 
     state={
-        isLoggedIn:true
+        isLoggedIn:false
     }
 
     _list(item){
@@ -111,10 +111,10 @@ class Profile extends Component{
                     </View>
                 ]:[
                     <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', paddingHorizontal:wp(4), marginTop:hp(2)}}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('EditProfileScreen')}>
                             <Text style={{color:'#969696',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3),}}>Edit Profile</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('UploadWorkScreen')}>
                             <Text style={{color:'rgb(196,35,44)',fontFamily:'Roboto-Regular',fontSize:13,marginLeft:wp(3)}}>Upload Work</Text>
                         </TouchableOpacity>
                     </View>
@@ -124,8 +124,8 @@ class Profile extends Component{
                 <View style={{alignSelf:'center', marginTop:hp(1)}}>
                     <Image style={{width:wp(30),height:wp(30), borderRadius:wp(15)}} source={require('../../assets/person.png')} resizeMode='cover'/>
                     <TouchableOpacity style={styles.favouritIcon}>
-                        <View style={{backgroundColor:'rgb(196,35,44)', height:wp(5),width:wp(5),borderRadius:wp(10)}}>
-                            <Image source={require('../../assets/icons/fireRed.png')} style={{width:wp(5),height:wp(5)}} resizeMode='contain'/>   
+                        <View style={{backgroundColor:'rgb(196,35,44)', height:wp(5),width:wp(5),borderRadius:wp(10),justifyContent:'center',alignItems:'center'}}>
+                            <Image source={require('../../assets/icons/checked.png')} style={{width:wp(3),height:wp(3)}} resizeMode='contain'/>   
                        </View>  
                     </TouchableOpacity>
                 </View>

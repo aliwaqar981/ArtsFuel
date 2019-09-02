@@ -38,6 +38,9 @@ class Signup extends Component{
             let userId = await getCurrentUserId();
             this.props.navigation.navigate("HomeScreen");
           }
+          else{
+            this.setState({disableBtn:false})
+          }
         }
       }  
 

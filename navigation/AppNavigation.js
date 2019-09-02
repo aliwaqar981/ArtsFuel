@@ -1,11 +1,7 @@
 import React, {Component,Fragment} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import { createStackNavigator,createAppContainer,createSwitchNavigator,DrawerNavigator } from 'react-navigation';
@@ -20,6 +16,10 @@ import Favourites from '../src/screens/appFlow/favourites'
 import Chat from '../src/screens/appFlow/chat'
 import Explore from '../src/screens/appFlow/exploreArt'
 import FacebookTabBar from '../src/screens/appFlow/fbtabs'
+import EditProfile from '../src/screens/appFlow/editProfile'
+import UploadWork from '../src/screens/appFlow/uploadWork'
+
+
 
 
 const AuthStack = createSwitchNavigator({
@@ -61,6 +61,53 @@ const AuthStack = createSwitchNavigator({
         header:null
       },
     },
+    EditProfileScreen:{
+      screen:EditProfile,
+      navigationOptions:({ navigation, screenProps }) => ({
+        title: 'Edit Profile',
+        headerTitleStyle:{
+          fontFamily:'Roboto-Bold',
+          color:'#000000',
+          fontSize:16,
+          fontWeight:'bold'
+        },
+        headerLeft: <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginLeft:10,padding:5}}>
+                          <Image source={require('../src/assets/icons/backArrow.png')}/>
+                    </TouchableOpacity>,
+      })
+    },
+
+    EditProfileScreen:{
+      screen:EditProfile,
+      navigationOptions:({ navigation, screenProps }) => ({
+        title: 'Edit Profile',
+        headerTitleStyle:{
+          fontFamily:'Roboto-Bold',
+          color:'#000000',
+          fontSize:16,
+          fontWeight:'bold'
+        },
+        headerLeft: <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginLeft:10,padding:5}}>
+                          <Image source={require('../src/assets/icons/backArrow.png')}/>
+                    </TouchableOpacity>,
+      })
+    },
+    UploadWorkScreen:{
+      screen:UploadWork,
+      navigationOptions:({ navigation, screenProps }) => ({
+        title: 'Upload Work',
+        headerTitleStyle:{
+          fontFamily:'Roboto-Bold',
+          color:'#000000',
+          fontSize:16,
+          fontWeight:'bold'
+        },
+        headerLeft: <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginLeft:10,padding:5}}>
+                          <Image source={require('../src/assets/icons/backArrow.png')}/>
+                    </TouchableOpacity>,
+      })
+    },
+    
 
     FacebookTabBar:{
       screen:FacebookTabBar,

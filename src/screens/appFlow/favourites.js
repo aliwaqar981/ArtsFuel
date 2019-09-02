@@ -51,7 +51,7 @@ class Favourite extends Component{
                     
                 >
 
-                    <Saved key={'1'} tabLabel={'Saved(22)'} iconSrc={require('../../assets/icons/fireGrey.png')} />
+                    <Saved key={'1'} tabLabel={'Saved(22)'} iconSrc={require('../../assets/icons/fireGrey.png')} nav={this.props.navigation}/>
                     <Purchased key={'2'} tabLabel={'Purchased(4)'} iconSrc={require('../../assets/icons/shopping-basket.png')}/>
 
                 </ScrollableTabView>
