@@ -147,6 +147,6 @@ const AuthStack = createSwitchNavigator({
         App: AppStack,
     },
     {
-        initialRouteName: 'App',
+        initialRouteName: 'Auth',
     }
   ))

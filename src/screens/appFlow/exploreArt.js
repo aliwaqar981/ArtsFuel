@@ -30,8 +30,8 @@ var flatListData=[
 class Explore extends Component{
     render(){
         return(
-            <View style={{flex:1}}>
-                <Header1 nav={this.props.navigation}/>
+            <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
+                {/* <Header1 nav={this.props.navigation}/> */}
                 <View style={{backgroundColor:'#F6F6F6',width:wp(100),height:1}}/>
 
 

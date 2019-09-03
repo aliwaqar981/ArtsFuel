@@ -11,7 +11,7 @@ export default class UploadWork extends Component{
         return(
             <View style={styles.container}>
                 <TextInput 
-                    style={styles.input}
+                    style={styles.inputBox}
                     placeholder='Name'
                     onChange={(text)=>this.setState({name:text})}
                     value={this.state.name}
@@ -19,21 +19,21 @@ export default class UploadWork extends Component{
                 />
 
                 <TextInput 
-                    style={styles.input}
+                    style={styles.inputBox}
                     placeholder='Tags'
                     onChange={(text)=>this.setState({name:text})}
                     value={this.state.name}
                     // underlineColorAndroid={'rgb(196,35,44)'}
                 />
                 <TextInput 
-                    style={styles.input}
+                    style={styles.inputBox}
                     placeholder='Cost'
                     onChange={(text)=>this.setState({name:text})}
                     value={this.state.name}
                     // underlineColorAndroid={'rgb(196,35,44)'}
                 />
                 <TextInput 
-                    style={styles.input}
+                    style={styles.inputBox}
                     placeholder='Description'
                     multiline={true}
                     onChange={(text)=>this.setState({name:text})}
@@ -41,7 +41,7 @@ export default class UploadWork extends Component{
                     // underlineColorAndroid={'rgb(196,35,44)'}
                 />
 
-                <TouchableOpacity style={styles.followButton}>
+                <TouchableOpacity style={styles.uploadButton}>
                     <Text style={styles.buttonText}>Upload</Text>
                 </TouchableOpacity>
             </View>
@@ -56,25 +56,23 @@ const styles=StyleSheet.create({
         alignItems:'center',
         paddingTop:hp(10)
     },
-    input:{
-        paddingHorizontal:10,       
-        fontSize:16,
-        fontWeight:'bold',
+    inputBox : {
         width:wp(80),
-        alignSelf:'center',
-        borderWidth:2,
-        borderRadius:25,
-        borderColor:'rgb(196,35,44)',
-        marginTop:hp(2)
+        backgroundColor : 'rgb(226,233,238)',
+        borderRadius : 25,
+        paddingHorizontal : 16,
+        paddingVertical:10,        
+        fontSize : 16,
+        marginTop:hp(3)
     },
-    followButton:{
-        width:wp(50),
+    uploadButton:{
+        width:wp(80),
         backgroundColor : 'rgb(196,35,44)',
         borderRadius : 25,
         paddingVertical : 12,
+        marginVertical : 16,
         alignItems:"center",
-        alignSelf:'center',
-        marginTop:hp(3)
+        marginTop:hp(5)
     },
     buttonText : {
         fontSize:14,

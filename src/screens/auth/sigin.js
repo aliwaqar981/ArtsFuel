@@ -68,14 +68,12 @@ export default class Signin extends Component {
                     <View>
                         <TextInput style={styles.inputBox} 
                             placeholder="Email"
-                            placeholderTextColor="#fff" 
                             onChangeText={email => this.setState({ email })}
                             value={this.state.email}>
                         </TextInput>
 
                         <TextInput style={styles.inputBox} 
                             placeholder="Password"
-                            placeholderTextColor="#fff" 
                             secureTextEntry={true}
                             onChangeText={password => this.setState({ password })}
                             value={this.state.password}>
@@ -121,26 +119,21 @@ const styles = StyleSheet.create({
         backgroundColor:'#ffffff'
         //justifyContent: 'center',
     },
-
     containerForm : {
         backgroundColor: '#FFF',
         flex: 1,
         alignItems: "center",
         //justifyContent: 'center',
     },
-
     inputBox : {
         width:wp(80),
         backgroundColor : 'rgb(226,233,238)',
         borderRadius : 25,
         paddingHorizontal : 16,
-        
+        paddingVertical:10,        
         fontSize : 16,
-        color : '#fff',
         marginTop:hp(3)
         },
-
-
     button:{
         width:wp(80),
         backgroundColor : 'rgb(196,35,44)',

@@ -20,10 +20,18 @@ class FacebookTabBar extends React.Component {
     super(props);
     this.icons = [];
     //this.lb=[];
+    this.state={
+      selectIcon:false
+    }
   }
 
   componentDidMount() {
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue.bind(this));
+  }
+
+  handlePress=(value)=>{
+    this.props.handleParent(value)
+    this.setState({selectIcon:value})
   }
 
   setAnimationValue({ value, }) {
@@ -76,11 +84,19 @@ class FacebookTabBar extends React.Component {
           
         </TouchableOpacity>;
       })}
-      <TouchableOpacity onPress={()=>this.props.nav.navigate('ExploreScreen')} style={{marginLeft:20, marginBottom:5}}>
+      <TouchableOpacity onPress={()=>this.handlePress(true)} style={{marginLeft:20, marginBottom:5}}>
+          {this.state.selectIcon?[
+          <Image source={require('../../assets/icons/doubleDashActive.png')}/>
+          ]:[
           <Image source={require('../../assets/icons/doubleDash.png')}/>
+          ]}
       </TouchableOpacity>
-      <TouchableOpacity style={{marginLeft:20, marginBottom:5}}>
+      <TouchableOpacity onPress={()=>this.handlePress(false)} style={{marginLeft:20, marginBottom:5}}>
+          {this.state.selectIcon?[
+          <Image source={require('../../assets/icons/grid.png')}/>
+          ]:[
           <Image source={require('../../assets/icons/gridActive.png')}/>
+          ]}
       </TouchableOpacity>
     </View>;
   }

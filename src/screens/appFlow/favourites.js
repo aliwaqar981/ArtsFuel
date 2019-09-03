@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, SafeAreaView,Platform,FlatList} from 'react-native'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../helpers/Responsive'
+import Explore from '../appFlow/exploreArt'
 
 // import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,TabBar } from 'react-native-scrollable-tab-view';
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar } from 'react-native-scrollable-tab-view-forked'
@@ -17,26 +18,32 @@ const TabIcon=({selected, title})=>{
 
 
 class Favourite extends Component{
+    state={
+        selectMasonryView:false
+    }
+    handleParent=(select)=>{
+        this.setState({selectMasonryView:select})
+    }
     render(){
+        let SavedView
+        let PurchasedView
+        if(this.state.selectMasonryView){
+            SavedView=<Explore key={'1'} tabLabel={'Saved(22)'} iconSrc={require('../../assets/icons/fireGrey.png')} nav={this.props.navigation}/>
+            PurchasedView=<Explore key={'2'} tabLabel={'Purchased(4)'} iconSrc={require('../../assets/icons/shopping-basket.png')}/>    
+        }else{
+            SavedView=<Saved key={'1'} tabLabel={'Saved(22)'} iconSrc={require('../../assets/icons/fireGrey.png')} nav={this.props.navigation}/>
+            PurchasedView=<Purchased key={'2'} tabLabel={'Purchased(4)'} iconSrc={require('../../assets/icons/shopping-basket.png')}/>    
+        }
         return(
             <SafeAreaView style={{flex:1}}>
-            {/* <TouchableOpacity onPress={()=>this.props.navigation.navigate('CartScreen')} 
-            style={{position:'absolute',right:20,backgroundColor:'red',zIndex:500}}
-            // style={{
-            //     alignSelf:'flex-end'
-            // }}
-            >
-                <Text>Hello </Text>
-             <Text>Hello World</Text>
-            </TouchableOpacity> */}
                 <ScrollableTabView
 
                     renderTabBar={(props) => (
-                        
                     <FacebookTabBar
                         style={styles.scrollStyle}
                         tabStyle={styles.tabStyle}   
                         nav={this.props.navigation}
+                        handleParent={this.handleParent}
                     >
                     </FacebookTabBar>
                         // <Text style={{width:200, backgroundColor:'red',position:'absolute'}}>Helo world</Text> 
@@ -50,9 +57,14 @@ class Favourite extends Component{
                     initialPage={0}
                     
                 >
-
-                    <Saved key={'1'} tabLabel={'Saved(22)'} iconSrc={require('../../assets/icons/fireGrey.png')} nav={this.props.navigation}/>
-                    <Purchased key={'2'} tabLabel={'Purchased(4)'} iconSrc={require('../../assets/icons/shopping-basket.png')}/>
+                    {/* {this.state.selectMasonryView?[
+                    ]:[
+                        <Saved key={'1'} tabLabel={'Saved(22)'} iconSrc={require('../../assets/icons/fireGrey.png')} nav={this.props.navigation}/>
+                        <Purchased key={'2'} tabLabel={'Purchased(4)'} iconSrc={require('../../assets/icons/shopping-basket.png')}/>
+                    ]
+                    } */}
+                    {SavedView}
+                    {PurchasedView}
 
                 </ScrollableTabView>
             </SafeAreaView>
