@@ -123,7 +123,7 @@ class Profile extends Component{
 
                 <View style={{alignSelf:'center', marginTop:hp(1)}}>
                     <Image style={{width:wp(30),height:wp(30), borderRadius:wp(15)}} source={require('../../assets/person.png')} resizeMode='cover'/>
-                    <TouchableOpacity style={styles.favouritIcon}>
+                    <TouchableOpacity style={styles.checkIcon}>
                         <View style={{backgroundColor:'rgb(196,35,44)', height:wp(5),width:wp(5),borderRadius:wp(10),justifyContent:'center',alignItems:'center'}}>
                             <Image source={require('../../assets/icons/checked.png')} style={{width:wp(3),height:wp(3)}} resizeMode='contain'/>   
                        </View>  
@@ -187,7 +187,7 @@ const styles=StyleSheet.create({
         // elevation: 2,
         // shadowRadius:2
     },
-    favouritIcon:{
+    checkIcon:{
         width:wp(6),height:wp(6),
         borderRadius:wp(12),
         backgroundColor:'#ffffff',
